@@ -1,0 +1,527 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NBIPARTS- Premium Profile</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDK -->
+    <script type="module">
+        import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
+        import { getFirestore, doc, setDoc, getDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-firestore.js";
+        import { getAuth, signInAnonymously } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+
+        const firebaseConfig = {
+            apiKey: "", 
+            authDomain: "",
+            projectId: "",
+            storageBucket: "",
+            messagingSenderId: "",
+            appId: ""
+        };
+
+        let db = null;
+        if (firebaseConfig.apiKey) {
+            const app = initializeApp(firebaseConfig);
+            db = getFirestore(app);
+            const auth = getAuth(app);
+            
+            signInAnonymously(auth).then(() => {
+                onSnapshot(doc(db, "web_content", "nbiparts_id"), (doc) => {
+                    if (doc.exists()) {
+                        const data = doc.data();
+                        Object.keys(data).forEach(id => {
+                            const el = document.getElementById(id);
+                            if(el) el.innerHTML = data[id];
+                        });
+                    }
+                });
+            });
+        }
+        window.db = db;
+    </script>
+
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Inter:wght@400;600&display=swap');
+
+        :root {
+            --primary: #0a192f;
+            --secondary: #fbbf24;
+            --accent: #112240;
+            --whatsapp: #25D366;
+            --email: #EA4335;
+        }
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: var(--primary); 
+            color: #e6f1ff; 
+            scroll-behavior: smooth; 
+        }
+
+        h1, h2, h3, .font-heading { font-family: 'Montserrat', sans-serif; }
+
+        .editable-active { 
+            outline: 2px dashed var(--secondary); 
+            background: rgba(251, 191, 36, 0.1); 
+            cursor: text; 
+            padding: 4px;
+            border-radius: 4px;
+        }
+
+        .glass-nav {
+            background: rgba(10, 25, 47, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .hero-gradient {
+            background: linear-gradient(to bottom, rgba(10, 25, 47, 0.6), var(--primary));
+        }
+
+        .card-service {
+            background: var(--accent);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            cursor: pointer;
+        }
+
+        .card-service:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+
+        .btn-gold {
+            background: var(--secondary);
+            color: var(--primary);
+            font-weight: 800;
+            letter-spacing: 1px;
+            transition: all 0.3s;
+        }
+
+        .btn-gold:hover {
+            background: #f59e0b;
+            transform: scale(1.05);
+            box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+        }
+
+        /* Floating Menu */
+        .fab-container { position: fixed; bottom: 30px; right: 30px; z-index: 999; display: flex; flex-direction: column-reverse; align-items: center; gap: 15px; }
+        .fab-main { width: 60px; height: 60px; border-radius: 50%; background: var(--secondary); color: var(--primary); display: flex; align-items: center; justify-content: center; font-size: 24px; box-shadow: 0 10px 30px rgba(0,0,0,0.5); cursor: pointer; transition: 0.3s; }
+        .fab-main.active { transform: rotate(45deg); background: #ef4444; color: white; }
+        .fab-item { width: 50px; height: 50px; border-radius: 50%; display: flex; align-items: center; justify-content: center; color: white; text-decoration: none; opacity: 0; transform: translateY(20px); pointer-events: none; transition: 0.3s cubic-bezier(0.68, -0.55, 0.265, 1.55); position: relative; box-shadow: 0 5px 15px rgba(0,0,0,0.3); }
+        .fab-item.show { opacity: 1; transform: translateY(0); pointer-events: auto; }
+        .fab-label { position: absolute; right: 70px; background: white; color: black; padding: 6px 14px; border-radius: 8px; font-size: 12px; font-weight: bold; white-space: nowrap; opacity: 0; transition: 0.2s; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .fab-item:hover .fab-label { opacity: 1; }
+
+        #modal-overlay { transition: all 0.3s ease; }
+        .modal-content { transform: scale(0.9); transition: all 0.3s ease; background: #112240; }
+        #modal-overlay.active .modal-content { transform: scale(1); }
+
+        .custom-scrollbar::-webkit-scrollbar { width: 6px; }
+        .custom-scrollbar::-webkit-scrollbar-track { background: transparent; }
+        .custom-scrollbar::-webkit-scrollbar-thumb { background: #fbbf24; border-radius: 10px; }
+    </style>
+</head>
+<body>
+
+    <!-- Floating Contact & Admin Menu -->
+    <div class="fab-container">
+        <div class="fab-main" onclick="toggleFab()" id="fabMain"><i class="fas fa-plus"></i></div>
+        <a href="https://wa.me/6281350501650" target="_blank" class="fab-item" style="background: var(--whatsapp);"><i class="fab fa-whatsapp text-xl"></i><span class="fab-label">WhatsApp Admin</span></a>
+        <a href="mailto:nbiparts.sales@gmail.com" class="fab-item" style="background: var(--email);"><i class="fas fa-envelope text-xl"></i><span class="fab-label">Email Sales</span></a>
+        <button onclick="requestLogin()" class="fab-item" style="background: #4b5563;" id="adminBtn"><i class="fas fa-lock text-xl"></i><span class="fab-label">Admin Login</span></button>
+    </div>
+
+    <!-- Modal System -->
+    <div id="modal-overlay" class="fixed inset-0 bg-black/90 z-[1000] flex items-center justify-center p-4 opacity-0 pointer-events-none overflow-y-auto">
+        <div class="modal-content max-w-2xl w-full rounded-3xl p-8 md:p-12 border border-white/10 relative shadow-2xl my-auto">
+            <button onclick="closeModal()" class="absolute top-6 right-6 text-gray-500 hover:text-white transition"><i class="fas fa-times text-2xl"></i></button>
+            <div id="modal-body" class="custom-scrollbar max-h-[70vh] overflow-y-auto pr-2"></div>
+            <div class="mt-8 flex justify-center" id="modal-footer"></div>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center">
+        <div class="flex items-center space-x-3">
+            <div class="w-12 h-12 bg-amber-400 rounded-xl flex items-center justify-center text-primary font-black text-xl shadow-lg">NBI</div>
+            <div>
+                <h1 class="text-lg font-extrabold tracking-tight editable" id="nav-brand">NBIPARTS</h1>
+                <p class="text-[10px] uppercase tracking-[3px] text-amber-400 font-bold">Premium European Truck Parts</p>
+            </div>
+        </div>
+        <div class="hidden lg:flex space-x-10 text-xs uppercase tracking-widest font-bold">
+            <a href="#home" class="hover:text-amber-400 transition">Beranda</a>
+            <a href="#about" class="hover:text-amber-400 transition">Tentang Kami</a>
+            <a href="#products" class="hover:text-amber-400 transition">Produk</a>
+            <a href="#services" class="hover:text-amber-400 transition">Layanan</a>
+            <a href="#contact" class="bg-amber-400 text-primary px-6 py-2 rounded-full hover:scale-105 transition transform">Hubungi Kami</a>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <img src="https://images.unsplash.com/photo-1591768793355-74d7af738596?auto=format&fit=crop&q=80&w=1470" class="w-full h-full object-cover opacity-40" alt="Truck background">
+            <div class="absolute inset-0 hero-gradient"></div>
+        </div>
+        
+        <div class="relative z-10 text-center px-6 max-w-5xl">
+            <h2 class="text-amber-400 font-black tracking-[0.4em] uppercase mb-6 text-sm md:text-base editable" id="hero-tagline">High Quality Selection</h2>
+            <h1 class="text-5xl md:text-8xl font-black mb-8 leading-tight editable" id="hero-title">NBIPARTS <br><span class="text-amber-400">EXCELLENCE</span></h1>
+            <p class="text-lg md:text-xl text-gray-300 mb-12 max-w-2xl mx-auto leading-relaxed editable" id="hero-desc">Partner strategis Anda untuk suku cadang truk premium Volvo, Scania, dan solusi Karoseri di Indonesia.</p>
+            <div class="flex flex-col sm:flex-row gap-6 justify-center">
+                <a href="#products" class="btn-gold px-10 py-4 rounded-full text-sm uppercase">Lihat Katalog</a>
+                <button onclick="showAboutPop()" class="border-2 border-white/20 hover:border-amber-400 px-10 py-4 rounded-full text-sm uppercase font-bold transition">Pelajari Lebih Lanjut</button>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-32 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-20 items-center">
+            <div class="relative group cursor-pointer" onclick="showAboutPop()">
+                <div class="absolute -inset-4 bg-amber-400/20 rounded-2xl blur-2xl group-hover:bg-amber-400/30 transition"></div>
+                <img src="https://images.unsplash.com/photo-1580674285054-bed31e145f59?auto=format&fit=crop&q=80&w=1470" class="relative rounded-2xl shadow-2xl grayscale hover:grayscale-0 transition duration-700" alt="Warehouse">
+                <div class="absolute bottom-10 right-10 bg-amber-400 p-8 rounded-2xl text-primary text-center shadow-2xl">
+                    <span class="block text-4xl font-black">10+</span>
+                    <span class="text-xs font-bold uppercase tracking-widest">Tahun Pengalaman</span>
+                </div>
+            </div>
+            <div>
+                <h3 class="text-amber-400 font-bold tracking-widest mb-4">TENTANG KAMI</h3>
+                <h2 class="text-4xl md:text-5xl font-black mb-8 leading-tight editable" id="about-title">Kami Lebih Dari Sekadar Pemasok Suku Cadang</h2>
+                <div class="text-gray-400 text-lg leading-relaxed space-y-6 editable" id="about-text">
+                    <p>NBIPARTS adalah destinasi utama Anda untuk suku cadang truk Eropa dan produk trailer berkualitas tinggi. Kami bukan hanya sebuah perusahaan; kami adalah mitra Anda dalam keunggulan transportasi.</p>
+                </div>
+                <button onclick="showAboutPop()" class="mt-8 text-amber-400 font-bold flex items-center group">
+                    BACA PROFIL LENGKAP <i class="fas fa-arrow-right ml-3 group-hover:translate-x-2 transition"></i>
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-32 px-6 bg-[#0a192f]">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h3 class="text-amber-400 font-bold tracking-widest mb-4">KATALOG PRODUK</h3>
+                <h2 class="text-4xl md:text-5xl font-black">Suku Cadang Unggulan</h2>
+            </div>
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Product 1 -->
+                <div class="group bg-accent rounded-3xl overflow-hidden border border-white/5 hover:border-amber-400/50 transition duration-500">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1581092160562-40aa08e78837?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Engine Parts">
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-bold mb-2">Volvo Truck Parts</h4>
+                        <p class="text-gray-500 text-sm mb-6">Komponen mesin, transmisi, dan kaki-kaki asli untuk efisiensi maksimal.</p>
+                        <button onclick="showProductPop('Volvo')" class="w-full py-3 rounded-xl border border-amber-400/30 text-amber-400 text-sm font-bold hover:bg-amber-400 hover:text-primary transition">Lihat Detail</button>
+                    </div>
+                </div>
+                <!-- Product 2 -->
+                <div class="group bg-accent rounded-3xl overflow-hidden border border-white/5 hover:border-amber-400/50 transition duration-500">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1621905251918-48416bd8575a?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Scania Parts">
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-bold mb-2">Scania High Performance</h4>
+                        <p class="text-gray-500 text-sm mb-6">Solusi suku cadang untuk performa truk Scania yang tahan lama di medan berat.</p>
+                        <button onclick="showProductPop('Scania')" class="w-full py-3 rounded-xl border border-amber-400/30 text-amber-400 text-sm font-bold hover:bg-amber-400 hover:text-primary transition">Lihat Detail</button>
+                    </div>
+                </div>
+                <!-- Product 3 -->
+                <div class="group bg-accent rounded-3xl overflow-hidden border border-white/5 hover:border-amber-400/50 transition duration-500">
+                    <div class="h-64 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1586864387917-f53bc464e81c?auto=format&fit=crop&q=80&w=800" class="w-full h-full object-cover group-hover:scale-110 transition duration-500" alt="Axle Parts">
+                    </div>
+                    <div class="p-8">
+                        <h4 class="text-xl font-bold mb-2">Trailer Components</h4>
+                        <p class="text-gray-500 text-sm mb-6">Axle, suspension, dan brake system untuk berbagai tipe karoseri trailer.</p>
+                        <button onclick="showProductPop('Trailer')" class="w-full py-3 rounded-xl border border-amber-400/30 text-amber-400 text-sm font-bold hover:bg-amber-400 hover:text-primary transition">Lihat Detail</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Grid -->
+    <section id="services" class="py-32 bg-[#0d1b33] px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-20">
+                <h3 class="text-amber-400 font-bold tracking-widest mb-4">LAYANAN UNGGULAN</h3>
+                <h2 class="text-4xl md:text-5xl font-black">Solusi Komprehensif</h2>
+            </div>
+            <div class="grid md:grid-cols-3 gap-10">
+                <div class="card-service p-10 rounded-3xl" onclick="showServicePop('filter')">
+                    <div class="w-16 h-16 bg-amber-400/10 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fas fa-filter"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 editable" id="s1-title">Ultra-Fine Filters</h4>
+                    <p class="text-gray-400 leading-relaxed editable" id="s1-desc">Teknologi filtrasi hingga 0.5 mikron. Melindungi mesin Anda dari kontaminasi bakteri.</p>
+                </div>
+                <div class="card-service p-10 rounded-3xl" onclick="showServicePop('karoseri')">
+                    <div class="w-16 h-16 bg-amber-400/10 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fas fa-truck-moving"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 editable" id="s2-title">Karoseri Kustom</h4>
+                    <p class="text-gray-400 leading-relaxed editable" id="s2-desc">Pembuatan unit flatbed, dump truck, hingga box aluminium standar industri.</p>
+                </div>
+                <div class="card-service p-10 rounded-3xl" onclick="showServicePop('konsinyasi')">
+                    <div class="w-16 h-16 bg-amber-400/10 text-amber-400 rounded-2xl flex items-center justify-center text-3xl mb-8">
+                        <i class="fas fa-hand-holding-heart"></i>
+                    </div>
+                    <h4 class="text-2xl font-bold mb-4 editable" id="s3-title">Layanan Konsinyasi</h4>
+                    <p class="text-gray-400 leading-relaxed editable" id="s3-desc">Stok suku cadang tersedia di gudang Anda. Bayar hanya ketika digunakan.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="contact" class="py-20 bg-primary px-6 border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid md:grid-cols-3 gap-16">
+            <div class="col-span-1">
+                <div class="flex items-center space-x-3 mb-8">
+                    <div class="w-10 h-10 bg-amber-400 rounded-lg flex items-center justify-center text-primary font-black">NBI</div>
+                    <span class="text-xl font-bold">NBIPARTS</span>
+                </div>
+                <p class="text-gray-500 leading-relaxed mb-8 editable" id="footer-about">NBIPARTS berkomitmen untuk memberikan kualitas terbaik bagi bisnis logistik dan pertambangan Anda.</p>
+                <div class="flex space-x-5 text-xl">
+                    <a href="#" class="text-gray-600 hover:text-amber-400 transition"><i class="fab fa-instagram"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-amber-400 transition"><i class="fab fa-linkedin"></i></a>
+                    <a href="#" class="text-gray-600 hover:text-amber-400 transition"><i class="fab fa-facebook"></i></a>
+                </div>
+            </div>
+            <div class="col-span-1">
+                <h4 class="text-amber-400 font-bold uppercase tracking-widest mb-8">Navigasi</h4>
+                <ul class="space-y-4 text-gray-500 font-medium">
+                    <li><a href="#home" class="hover:text-white transition">Beranda</a></li>
+                    <li><a href="#about" class="hover:text-white transition">Tentang Kami</a></li>
+                    <li><a href="#products" class="hover:text-white transition">Katalog Produk</a></li>
+                    <li><a href="#services" class="hover:text-white transition">Layanan Utama</a></li>
+                </ul>
+            </div>
+            <div class="col-span-1">
+                <h4 class="text-amber-400 font-bold uppercase tracking-widest mb-8">Kantor Pusat</h4>
+                <div class="space-y-6 text-gray-500">
+                    <p class="flex items-start"><i class="fas fa-map-marker-alt mt-1 mr-4 text-amber-400"></i> <span class="editable" id="f-addr">Jl. Indrakila No 2 RT 58, Balikpapan, Kalimantan Timur.</span></p>
+                    <p class="flex items-center"><i class="fas fa-phone mr-4 text-amber-400"></i> <span class="editable" id="f-phone">+62 813 5050 1650</span></p>
+                    <p class="flex items-center"><i class="fas fa-envelope mr-4 text-amber-400"></i> <span class="editable" id="f-mail">nbiparts.sales@gmail.com</span></p>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-20 pt-10 border-t border-white/5 text-center text-gray-600 text-xs tracking-widest">
+            &copy; 2025 NBIPARTS. ALL RIGHTS RESERVED.
+        </div>
+    </footer>
+
+    <!-- Save Bar Mode Edit -->
+    <div id="saveBar" class="fixed bottom-0 left-0 w-full bg-green-600 p-5 z-[1000] flex justify-between items-center hidden animate-bounce-in">
+        <div class="flex items-center text-white">
+            <div class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center mr-4"><i class="fas fa-pencil-alt"></i></div>
+            <div>
+                <p class="font-bold">Mode Edit Aktif</p>
+                <p class="text-xs opacity-80">Klik teks apa saja untuk merubah isi website.</p>
+            </div>
+        </div>
+        <button onclick="saveChanges()" class="bg-white text-green-700 px-8 py-3 rounded-full font-black text-sm uppercase shadow-xl hover:scale-105 transition active:scale-95">Simpan ke Cloud & Logout</button>
+    </div>
+
+    <script>
+        const ADMIN_PASS = "admin123";
+        let isEditMode = false;
+
+        function toggleFab() {
+            document.getElementById('fabMain').classList.toggle('active');
+            document.querySelectorAll('.fab-item').forEach(item => item.classList.toggle('show'));
+        }
+
+        function openModal(content) {
+            document.getElementById('modal-body').innerHTML = content;
+            document.getElementById('modal-footer').innerHTML = `<button onclick="closeModal()" class="bg-amber-400 text-primary px-10 py-3 rounded-full text-sm font-black uppercase hover:scale-105 transition shadow-lg">Tutup</button>`;
+            document.getElementById('modal-overlay').classList.add('active', 'opacity-100', 'pointer-events-auto');
+            document.body.style.overflow = 'hidden';
+        }
+
+        function closeModal() {
+            document.getElementById('modal-overlay').classList.remove('active', 'opacity-100', 'pointer-events-auto');
+            document.body.style.overflow = 'auto';
+        }
+
+        // Pop-up Functions
+        function showAboutPop() {
+            openModal(`
+                <h3 class="text-amber-400 font-bold mb-2 tracking-widest">PROFIL PERUSAHAAN</h3>
+                <h2 class="text-4xl font-black mb-6">NBIPARTS</h2>
+                <div class="space-y-6 text-gray-300 leading-relaxed">
+                    <p>Berdiri di Balikpapan, Kalimantan Timur, NBIPARTS telah berkembang menjadi pemain kunci dalam penyediaan suku cadang truk Eropa (Volvo, Scania, Mercedes-Benz) dan komponen trailer di Indonesia.</p>
+                    <p>Visi kami adalah menjadi penyedia suku cadang terkemuka yang mampu memenuhi berbagai kebutuhan transportasi di sektor darat, laut, dan udara dengan kualitas terbaik.</p>
+                    <div class="bg-accent p-6 rounded-2xl border border-white/5">
+                        <h4 class="text-amber-400 font-bold mb-4 uppercase text-sm">Nilai Utama Kami:</h4>
+                        <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-sm">
+                            <li class="flex items-center"><i class="fas fa-check-circle text-amber-400 mr-2"></i> Integrity</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-amber-400 mr-2"></i> Quality</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-amber-400 mr-2"></i> Agility</li>
+                            <li class="flex items-center"><i class="fas fa-check-circle text-amber-400 mr-2"></i> Loyalty</li>
+                        </ul>
+                    </div>
+                </div>
+            `);
+        }
+
+        function showProductPop(type) {
+            let content = "";
+            if(type === 'Volvo') {
+                content = `
+                    <h3 class="text-amber-400 font-bold mb-2 tracking-widest uppercase">Katalog Produk</h3>
+                    <h2 class="text-4xl font-black mb-6">Volvo Truck Parts</h2>
+                    <p class="text-gray-300 mb-6">Kami menyediakan suku cadang lengkap untuk Volvo FM, FMX, dan FH series.</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-cog text-amber-400 mr-3"></i> Engine Components (Pistons, Liners, Turbo)</li>
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-cog text-amber-400 mr-3"></i> Transmission & I-Shift Parts</li>
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-cog text-amber-400 mr-3"></i> Air Suspension & Chassis Parts</li>
+                    </ul>
+                `;
+            } else if(type === 'Scania') {
+                content = `
+                    <h3 class="text-amber-400 font-bold mb-2 tracking-widest uppercase">Katalog Produk</h3>
+                    <h2 class="text-4xl font-black mb-6">Scania High Performance</h2>
+                    <p class="text-gray-300 mb-6">Komponen khusus untuk Scania P-Series dan G-Series di pertambangan.</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-bolt text-amber-400 mr-3"></i> Fuel System & Injectors</li>
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-bolt text-amber-400 mr-3"></i> Brake & Cooling Systems</li>
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-bolt text-amber-400 mr-3"></i> Scania Genuine Accessories</li>
+                    </ul>
+                `;
+            } else {
+                content = `
+                    <h3 class="text-amber-400 font-bold mb-2 tracking-widest uppercase">Katalog Produk</h3>
+                    <h2 class="text-4xl font-black mb-6">Trailer Components</h2>
+                    <p class="text-gray-300 mb-6">Komponen trailer untuk beban berat dan daya tahan maksimal.</p>
+                    <ul class="space-y-3 text-gray-400">
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-link text-amber-400 mr-3"></i> Axle Assemblies (BPW, FUWA Style)</li>
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-link text-amber-400 mr-3"></i> Mechanical & Air Suspension</li>
+                        <li class="flex items-center p-3 bg-white/5 rounded-lg"><i class="fas fa-link text-amber-400 mr-3"></i> Landing Gear & Fifth Wheel</li>
+                    </ul>
+                `;
+            }
+            openModal(content);
+        }
+
+        function showServicePop(service) {
+            let content = "";
+            if(service === 'filter') {
+                content = `
+                    <h3 class="text-amber-400 font-bold mb-2 tracking-widest uppercase">Layanan</h3>
+                    <h2 class="text-4xl font-black mb-6">Ultra-Fine Filters</h2>
+                    <p class="text-gray-300 mb-6">Lindungi peralatan Anda dengan teknologi filtrasi tercanggih.</p>
+                    <div class="space-y-4">
+                        <div class="p-5 border border-white/10 rounded-2xl">
+                            <h4 class="font-bold text-amber-400 mb-2">Filtrasi 0.5 Mikron</h4>
+                            <p class="text-sm text-gray-400">Mampu menyaring partikel terkecil dan bakteri bahan bakar yang merusak sistem common rail.</p>
+                        </div>
+                        <div class="p-5 border border-white/10 rounded-2xl">
+                            <h4 class="font-bold text-amber-400 mb-2">Eco-Friendly</h4>
+                            <p class="text-sm text-gray-400">Memperpanjang usia pakai oli dan bahan bakar, mengurangi limbah industri.</p>
+                        </div>
+                    </div>
+                `;
+            } else if(service === 'karoseri') {
+                content = `
+                    <h3 class="text-amber-400 font-bold mb-2 tracking-widest uppercase">Layanan</h3>
+                    <h2 class="text-4xl font-black mb-6">Vehicle Body Fabrication</h2>
+                    <p class="text-gray-300 mb-6">Pembuatan unit karoseri kustom sesuai kebutuhan spesifik operasional Anda.</p>
+                    <ul class="grid grid-cols-1 md:grid-cols-2 gap-4 text-gray-400 text-sm">
+                        <li class="flex items-center"><i class="fas fa-check text-amber-400 mr-2"></i> Flatbed & Box</li>
+                        <li class="flex items-center"><i class="fas fa-check text-amber-400 mr-2"></i> Wingbox & Dump Truck</li>
+                        <li class="flex items-center"><i class="fas fa-check text-amber-400 mr-2"></i> Tanker & Food Truck</li>
+                        <li class="flex items-center"><i class="fas fa-check text-amber-400 mr-2"></i> Bus & Minibus</li>
+                    </ul>
+                `;
+            } else {
+                content = `
+                    <h3 class="text-amber-400 font-bold mb-2 tracking-widest uppercase">Layanan</h3>
+                    <h2 class="text-4xl font-black mb-6">Consignment Services</h2>
+                    <p class="text-gray-300 mb-6">Optimalkan operasional Anda tanpa beban stok inventaris yang besar.</p>
+                    <div class="space-y-4 text-gray-400 text-sm">
+                        <p class="bg-white/5 p-4 rounded-xl">✓ <strong>Stok Selalu Tersedia:</strong> Suku cadang siap di gudang Anda saat dibutuhkan.</p>
+                        <p class="bg-white/5 p-4 rounded-xl">✓ <strong>Bayar Saat Digunakan:</strong> Pembayaran hanya dilakukan setelah barang dipakai (Pay upon usage).</p>
+                        <p class="bg-white/5 p-4 rounded-xl">✓ <strong>Manajemen Inventaris:</strong> Kami yang mengelola ketersediaan stok Anda.</p>
+                    </div>
+                `;
+            }
+            openModal(content);
+        }
+
+        // Admin Functions
+        function requestLogin() {
+            toggleFab();
+            openModal(`
+                <div class="mb-6 text-center">
+                    <div class="w-20 h-20 bg-amber-400/20 text-amber-400 rounded-full flex items-center justify-center mx-auto mb-6 text-3xl">
+                        <i class="fas fa-user-shield"></i>
+                    </div>
+                    <h2 class="text-3xl font-black mb-2">Admin Access</h2>
+                    <p class="text-gray-500">Masukkan kata sandi untuk mengelola konten.</p>
+                </div>
+                <input type="password" id="passIn" class="w-full p-5 rounded-2xl bg-primary border border-white/10 text-center text-2xl mb-6 focus:border-amber-400 outline-none transition" placeholder="••••">
+                <button onclick="checkPass()" class="btn-gold w-full py-5 rounded-2xl shadow-lg uppercase font-black tracking-widest">AKTIFKAN MODE EDIT</button>
+            `);
+            setTimeout(() => document.getElementById('passIn').focus(), 300);
+        }
+
+        function checkPass() {
+            const input = document.getElementById('passIn').value;
+            if(input === ADMIN_PASS) {
+                isEditMode = true;
+                closeModal();
+                document.querySelectorAll('.editable').forEach(el => {
+                    el.contentEditable = true;
+                    el.classList.add('editable-active');
+                });
+                document.getElementById('saveBar').classList.remove('hidden');
+                document.getElementById('adminBtn').innerHTML = `<i class="fas fa-sign-out-alt text-xl"></i><span class="fab-label">Logout Edit</span>`;
+                document.getElementById('adminBtn').style.background = "#ef4444";
+            } else {
+                alert("Kata sandi salah. Akses ditolak.");
+            }
+        }
+
+        async function saveChanges() {
+            const data = {};
+            document.querySelectorAll('.editable').forEach(el => data[el.id] = el.innerHTML);
+            
+            localStorage.setItem('nbi_cloud_data_v2', JSON.stringify(data));
+
+            if (window.db) {
+                try {
+                    await setDoc(doc(window.db, "web_content", "nbiparts_id"), data);
+                    alert("Berhasil! Data telah diperbarui secara global di Cloud.");
+                } catch (e) {
+                    alert("Gagal sinkronisasi cloud. Perubahan tersimpan di browser ini saja.");
+                }
+            } else {
+                alert("Perubahan disimpan secara lokal.");
+            }
+            location.reload();
+        }
+
+        window.onload = () => {
+            const saved = localStorage.getItem('nbi_cloud_data_v2');
+            if(saved) {
+                const data = JSON.parse(saved);
+                Object.keys(data).forEach(id => {
+                    const el = document.getElementById(id);
+                    if(el) el.innerHTML = data[id];
+                });
+            }
+        };
+    </script>
+</body>
+</html>
