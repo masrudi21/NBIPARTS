@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://masrudi21.github.io/NBIPARTS//sitemap.xml
