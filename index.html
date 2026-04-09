@@ -400,7 +400,18 @@
 
         function openModal(content) {
             document.getElementById('modal-body').innerHTML = content;
-            document.getElementById('modal-footer').innerHTML = `<button onclick="closeModal()" class="bg-amber-400 text-primary px-10 py-3 rounded-full text-sm font-black uppercase hover:scale-105 transition shadow-lg">Tutup</button>`;
+            document.getElementById('modal-footer').innerHTML = `
+
+             <div class="flex gap-3 justify-center">
+        <a href="catalog.html" 
+           class="bg-blue-500 text-white px-6 py-3 rounded-full text-sm font-bold uppercase hover:scale-105 transition shadow-lg">
+           Lihat Katalog
+        </a>
+
+
+            <button onclick="closeModal()" class="bg-amber-400 text-primary px-10 py-3 rounded-full text-sm font-black uppercase hover:scale-105 transition shadow-lg">Tutup</button>`;
+
+            
             document.getElementById('modal-overlay').classList.add('active', 'opacity-100', 'pointer-events-auto');
             document.body.style.overflow = 'hidden';
         }
@@ -490,7 +501,7 @@
                 `;      
             } else {
                 content = `
-                     <h3 class="text-amber-400 font-bold mb-2 tracking-widest uppercase"><a href="https://masrudi21.github.io/NBIPARTS/trailer.html" class="text-xl font-bold">Lihat Katalog Produk</a></h3>
+                    <h3 class="text-amber-400 font-bold mb-2 tracking-widest uppercase">Katalog Produk</h3>
                     <h2 class="text-4xl font-black mb-6">Trailer Components</h2>
                     <p class="text-gray-300 mb-6">Komponen trailer untuk beban berat dan daya tahan maksimal.</p>
                     <ul class="space-y-3 text-gray-400">
