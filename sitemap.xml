@@ -1,46 +1,82 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+<urlset
+      xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+      xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+            http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+<!-- created with Free Online Sitemap Generator www.xml-sitemaps.com -->
 
-  <url>
-    <loc>hhttps://masrudi21.github.io/NBIPARTS/</loc>
-  </url>
 
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/volvo.html</loc>
-  </url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>1.00</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/catalog.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.80</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/index.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/truck.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/trailer.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.64</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/volvo.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/scania.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/iveco.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/jost.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/york.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/bpw.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/fuwa.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.51</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/hyva.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
+<url>
+  <loc>https://masrudi21.github.io/NBIPARTS/palfinger.html</loc>
+  <lastmod>2026-04-09T05:44:16+00:00</lastmod>
+  <priority>0.41</priority>
+</url>
 
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/scania.html</loc>
-  </url>
-
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/jost.html</loc>
-  </url>
-
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/york.html</loc>
-  </url>
-
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/fuwa.html</loc>
-  </url>
-
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/bpw.html</loc>
-  </url>
-
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/iveco.html</loc>
-  </url>
-
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/palfinger.html</loc>
-  </url>
-
-  <url>
-    <loc>https://masrudi21.github.io/NBIPARTS/hyva.html</loc>
-  </url>
-
-  
 
 </urlset>
