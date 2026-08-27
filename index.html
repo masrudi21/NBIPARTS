@@ -512,6 +512,24 @@
 .service-card.layanan{ min-height:300px; display:flex; flex-direction:column; justify-content:space-between; }
 .service-card.layanan h3{ font-size:28px; }
 
+
+/* BRAND SECTION */
+.brands{background:#191970;padding:90px 0;border-top:4px solid #adff2f;border-bottom:4px solid #adff2f;position:relative;overflow:hidden}
+.brands .section-head h2{color:#F5F5F5}
+.brands .section-head h2 span{background:#adff2f;color:#191970;border:3px solid #191970;padding:0 14px;border-radius:16px;display:inline-block;transform:rotate(1deg)}
+.brands .section-head p{color:rgba(245,245,245,0.7)}
+.brand-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:16px;margin-top:20px}
+@media(max-width:1100px){.brand-grid{grid-template-columns:repeat(4,1fr)}}
+@media(max-width:640px){.brand-grid{grid-template-columns:repeat(2,1fr)}}
+.brand-card{background:#F5F5F5;border:3px solid #191970;border-radius:20px;padding:18px;height:110px;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden;transition:all 0.35s cubic-bezier(0.16,1,0.3,1);cursor:pointer}
+.brand-card:hover{background:#adff2f;transform:translateY(-6px) rotate(1deg);box-shadow:8px 8px 0 #F5F5F5}
+.brand-card img{max-width:92%;max-height:56px;object-fit:contain;filter:grayscale(100%) contrast(1.1);transition:all 0.4s}
+.brand-card:hover img{filter:grayscale(0%) contrast(1);transform:scale(1.08)}
+.brand-card .brand-name{font-family:'Barlow Condensed';font-weight:900;font-size:20px;letter-spacing:-0.02em;color:#191970;text-align:center}
+.brand-card:hover .brand-name{transform:scale(1.05)}
+.brand-tag{position:absolute;top:8px;right:8px;background:#191970;color:#adff2f;font-weight:800;font-size:8px;letter-spacing:0.1em;padding:3px 6px;border-radius:999px}
+
+
 </style>
 </head>
 <body>
@@ -537,6 +555,7 @@
     <div class="nav-links" id="navLinks">
       <a href="#home" class="nav-link magnetic"><span>Beranda</span></a>
       <a href="#about" class="nav-link magnetic"><span>Tentang</span></a>
+      <a href="#brands" class="nav-link magnetic"><span>Brand</span></a>
       <a href="#products" class="nav-link magnetic"><span>Produk</span></a>
       <a href="#services" class="nav-link magnetic"><span>Layanan</span></a>
       <a href="#contact" class="nav-cta">GET QUOTE →</a>
@@ -703,6 +722,42 @@
     </div>
   </div>
   <div style="height:40px"></div>
+</section>
+
+<section id="brands" class="brands">
+  <div class="container">
+    <div class="section-head reveal">
+      <h2>BRAND <span>PARTNER KAMI</span></h2>
+      <p>Brand global terkemuka untuk truk, trailer, engine & hydraulic — ready stock Balikpapan, Jakarta, Surabaya. Klik logo untuk lihat katalog.</p>
+    </div>
+    <div class="brand-grid">
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/iveco.html" class="brand-card reveal magnetic" target="_self" data-brand="IVECO" style="text-decoration:none;color:inherit"><span class="brand-tag">TRUCK</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/iveco.png" alt="Iveco" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">IVECO</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/volvo.html" class="brand-card reveal magnetic" target="_self" data-brand="VOLVO" style="text-decoration:none;color:inherit"><span class="brand-tag">TRUCK</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/volvo.png" alt="Volvo" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">VOLVO</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/scania.html" class="brand-card reveal magnetic" target="_self" data-brand="SCANIA" style="text-decoration:none;color:inherit"><span class="brand-tag">TRUCK</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/scania.png" alt="Scania" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">SCANIA</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/man.html" class="brand-card reveal magnetic" target="_self" data-brand="MAN" style="text-decoration:none;color:inherit"><span class="brand-tag">TRUCK</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/man.png" alt="MAN" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">MAN</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/jost.html" class="brand-card reveal magnetic" target="_self" data-brand="JOST" style="text-decoration:none;color:inherit"><span class="brand-tag">#1 FIFTHWHEEL</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/jost.png" alt="JOST" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">JOST</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/bpw.html" class="brand-card reveal magnetic" target="_self" data-brand="BPW" style="text-decoration:none;color:inherit"><span class="brand-tag">AXLE</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/bpw.png" alt="BPW" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">BPW</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/york.html" class="brand-card reveal magnetic" target="_self" data-brand="YORK" style="text-decoration:none;color:inherit"><span class="brand-tag">AXLE</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/york.png" alt="York" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">YORK</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/fuwa.html" class="brand-card reveal magnetic" target="_self" data-brand="FUWA" style="text-decoration:none;color:inherit"><span class="brand-tag">AXLE / KHITCH</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/fuwa.png" alt="FUWA" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">FUWA / KHITCH</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/palfinger.html" class="brand-card reveal magnetic" target="_self" data-brand="PALFINGER" style="text-decoration:none;color:inherit"><span class="brand-tag">HYDRAULIC</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/palfinger.png" alt="Palfinger" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">PALFINGER</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/cummins.html" class="brand-card reveal magnetic" target="_self" data-brand="CUMMINS" style="text-decoration:none;color:inherit"><span class="brand-tag">ENGINE</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/cummins.png" alt="Cummins" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">CUMMINS</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/cat.html" class="brand-card reveal magnetic" target="_self" data-brand="CAT" style="text-decoration:none;color:inherit"><span class="brand-tag">ENGINE</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/cat.png" alt="CAT" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">CAT</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/komatsu.html" class="brand-card reveal magnetic" target="_self" data-brand="KOMATSU" style="text-decoration:none;color:inherit"><span class="brand-tag">ENGINE</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/komatsu.png" alt="Komatsu" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">KOMATSU</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/wabco.html" class="brand-card reveal magnetic" target="_self" data-brand="WABCO" style="text-decoration:none;color:inherit"><span class="brand-tag">BRAKE</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/wabco.png" alt="WABCO" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">WABCO</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/bendix.html" class="brand-card reveal magnetic" target="_self" data-brand="BENDIX" style="text-decoration:none;color:inherit"><span class="brand-tag">BRAKE</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/bendix.png" alt="Bendix" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">BENDIX</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/donaldson.html" class="brand-card reveal magnetic" target="_self" data-brand="DONALDSON" style="text-decoration:none;color:inherit"><span class="brand-tag">FILTER</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/donaldson.png" alt="Donaldson" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">DONALDSON</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/baldwin.html" class="brand-card reveal magnetic" target="_self" data-brand="BALDWIN" style="text-decoration:none;color:inherit"><span class="brand-tag">FILTER</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/baldwin.png" alt="Baldwin" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">BALDWIN</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/fleetguard.html" class="brand-card reveal magnetic" target="_self" data-brand="FLEETGUARD" style="text-decoration:none;color:inherit"><span class="brand-tag">FILTER</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/fleetguard.png" alt="Fleetguard" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">FLEETGUARD</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/timken.html" class="brand-card reveal magnetic" target="_self" data-brand="TIMKEN" style="text-decoration:none;color:inherit"><span class="brand-tag">BEARING</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/timken.png" alt="Timken" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">TIMKEN</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/skf.html" class="brand-card reveal magnetic" target="_self" data-brand="SKF" style="text-decoration:none;color:inherit"><span class="brand-tag">BEARING</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/skf.png" alt="SKF" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">SKF</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/fag.html" class="brand-card reveal magnetic" target="_self" data-brand="FAG" style="text-decoration:none;color:inherit"><span class="brand-tag">BEARING</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/fag.png" alt="FAG" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">FAG</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/hyva.html" class="brand-card reveal magnetic" target="_self" data-brand="HYVA" style="text-decoration:none;color:inherit"><span class="brand-tag">HYDRAULIC</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/hyva.png" alt="HYVA" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">HYVA</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/eaton.html" class="brand-card reveal magnetic" target="_self" data-brand="EATON" style="text-decoration:none;color:inherit"><span class="brand-tag">HYDRAULIC</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/eaton.png" alt="Eaton" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">EATON</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/ringfeder.html" class="brand-card reveal magnetic" target="_self" data-brand="RINGFEDER" style="text-decoration:none;color:inherit"><span class="brand-tag">COUPLING</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/ringfeder.png" alt="Ringfeder" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">RINGFEDER</span></a>
+      <a href="https://masrudi21.github.io/NBIPARTS/products/brand/sampa.html" class="brand-card reveal magnetic" target="_self" data-brand="SAMPA" style="text-decoration:none;color:inherit"><span class="brand-tag">TRUCK</span><img src="https://masrudi21.github.io/NBIPARTS/products/brands/sampa.png" alt="Sampa" onerror="this.style.display='none'; this.nextElementSibling.style.display='block'"><span class="brand-name" style="display:none">SAMPA</span></a>
+    </div>
+    <div style="margin-top:24px;text-align:center"><p style="color:rgba(245,245,245,0.6);font-size:13px">Logo akan otomatis fallback ke nama brand kalau file belum ada. Upload logo PNG transparan ke <code>NBIPARTS/products/brands/</code> dengan nama file kecil: volvo.png, scania.png, jost.png, dll.</p></div>
+  </div>
 </section>
 
 <section id="services" class="services">
