@@ -1,336 +1,685 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>JOST Parts Catalog | NBIPARTS - Spare Part Truck & Trailer</title>
-    <meta name="description" content="Katalog lengkap JOST Axle 18T & 20T, Fifth Wheel, Landing Gear, dan komponen trailer lainnya dari NBIPARTS.">
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;700;800&family=Inter:wght@400;600&display=swap');
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>JOST - Global Leader Safety Systems | NBIPARTS</title>
+<style>
 
-        :root {
-            --primary: #0a192f;
-            --secondary: #fbbf24;
-            --accent: #112240;
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Barlow+Condensed:wght@900&display=swap');
+        html.lenis, html.lenis body { height: auto; }
+        .lenis.lenis-smooth { scroll-behavior: auto !important; }
+        .lenis.lenis-smooth [data-lenis-prevent] { overscroll-behavior: contain; }
+        * { box-sizing: border-box; }
+        html, body { margin:0; padding:0; width:100%; max-width:100vw; overflow-x:hidden; }
+        body { font-family: 'Poppins', sans-serif; background:#F5F5F5; color:#191970; position:relative; }
+        .container { max-width: 1240px; margin:0 auto; padding:0 24px; width:100%; box-sizing:border-box; }
+        @media(min-width:1400px){ .container{ max-width:1320px; } }
+
+        /* Custom Cursor */
+        @media(min-width:769px){
+          body, a, button, .magnetic { cursor:none !important; }
+          .custom-cursor, .custom-cursor-dot{ display:block; }
         }
-        
-        body { 
-            font-family: 'Inter', sans-serif; 
-            background-color: var(--primary); 
-            color: #e6f1ff; 
-            scroll-behavior: smooth; 
+        @media(max-width:768px){
+          .custom-cursor, .custom-cursor-dot{ display:none !important; }
+          *{ cursor:auto !important; }
         }
-
-        h1, h2, h3, .font-heading { font-family: 'Montserrat', sans-serif; }
-
-        .glass-nav {
-            background: rgba(10, 25, 47, 0.9);
-            backdrop-filter: blur(12px);
-            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+        .custom-cursor{
+          position:fixed; top:0; left:0; width:40px; height:40px;
+          border:1.5px solid #191970; border-radius:50%;
+          pointer-events:none; z-index:9999; mix-blend-mode:difference;
+          transition: width 0.2s, height 0.2s, background 0.2s, border-color 0.2s, transform 0.15s ease-out;
+          will-change: transform;
         }
-
-        .btn-gold {
-            background: var(--secondary);
-            color: var(--primary);
-            font-weight: 800;
-            transition: all 0.3s;
+        .custom-cursor.hover{
+          width:40px; height:40px; background: rgba(173,255,47,0.35);
+          border-color:#adff2f; mix-blend-mode:normal; transform: scale(1.8) !important;
         }
-
-        .btn-gold:hover {
-            background: #f59e0b;
-            transform: scale(1.05);
-            box-shadow: 0 0 20px rgba(251, 191, 36, 0.4);
+        .custom-cursor-dot{
+          width:6px; height:6px; background:#adff2f; border-radius:50%;
+          position:fixed; top:0; left:0; pointer-events:none; z-index:10000;
+          transform: translate(-50%,-50%); box-shadow: 0 0 12px rgba(173,255,47,0.8);
         }
 
-        /* Custom Scrollbar for Table */
-        .table-container::-webkit-scrollbar { height: 8px; width: 8px; }
-        .table-container::-webkit-scrollbar-track { background: rgba(255,255,255,0.05); border-radius: 4px; }
-        .table-container::-webkit-scrollbar-thumb { background: var(--secondary); border-radius: 4px; }
+        /* Loader */
+        .loader{
+          position:fixed; inset:0; background:#191970; z-index:10001;
+          display:flex; align-items:center; justify-content:center;
+          transition: transform 0.8s cubic-bezier(0.16,1,0.3,1), opacity 0.6s;
+          width:100vw; max-width:100vw; overflow:hidden;
+        }
+        .loader-hide{ transform: translateY(-100%); opacity:0; pointer-events:none; }
+        .loader-inner{ text-align:center; }
+        .loader-logo{
+          font-family:'Barlow Condensed', sans-serif; font-weight:900;
+          font-size:64px; color:#F5F5F5; letter-spacing:-0.04em;
+        }
+        .loader-logo .dot{ color:#adff2f; }
+        .loader-circle-wrap{ position:relative; margin:24px auto 0; width:80px; height:80px; display:flex; align-items:center; justify-content:center; }
+        .loader-progress{ transform: rotate(-90deg); transform-origin:50% 50%; animation: loaderDash 1.2s cubic-bezier(0.16,1,0.3,1) forwards; }
+        @keyframes loaderDash{ from{ stroke-dashoffset:213.6 } to{ stroke-dashoffset:0 } }
+        .loader-pct{ position:absolute; font-size:11px; font-weight:700; letter-spacing:0.2em; color:#adff2f; }
 
-        .product-card {
-            background: var(--accent);
-            border: 1px solid rgba(255, 255, 255, 0.05);
-            transition: all 0.3s ease;
+        /* NAV */
+        .nb-nav{
+          position:fixed; top:0; left:0; right:0; z-index:1000;
+          background:#191970; transition: all 0.4s cubic-bezier(0.16,1,0.3,1);
+          border-bottom:2px solid transparent; display:flex; flex-direction:column;
+          width:100%; max-width:100vw; overflow:hidden;
         }
-        .product-card:hover {
-            border-color: var(--secondary);
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        .nb-nav.scrolled{
+          background: rgba(25,25,112,0.9); backdrop-filter: blur(12px);
+          border-bottom:2px solid #adff2f; box-shadow: 0 8px 24px rgba(0,0,0,0.2);
         }
-    </style>
+        .nb-nav-inner{
+          flex:1; display:flex; align-items:center; justify-content:space-between;
+          max-width:1240px; margin:0 auto; width:100%; padding:0 24px; box-sizing:border-box;
+        }
+        .logo{
+          font-family:'Barlow Condensed', sans-serif; font-weight:900;
+          font-size:32px; color:#F5F5F5; text-decoration:none; letter-spacing:-0.02em;
+          transition: transform 0.2s;
+        }
+        .logo-dot{ color:#adff2f; margin-left:2px; }
+        .nav-links{ display:flex; align-items:center; gap:28px; }
+        .nav-link{
+          position:relative; color:#F5F5F5; text-decoration:none; font-weight:600; font-size:14px;
+          letter-spacing:0.08em; text-transform:uppercase; padding:8px 0; transition: transform 0.2s, color 0.2s;
+        }
+        .nav-link span{ position:relative; z-index:1; }
+        .nav-link::after{
+          content:''; position:absolute; left:0; bottom:0; width:100%; height:2px;
+          background:#adff2f; transform: scaleX(0); transform-origin:left; transition: transform 0.4s cubic-bezier(0.16,1,0.3,1);
+        }
+        .nav-link:hover{ color:#adff2f; }
+        .nav-link:hover::after{ transform: scaleX(1); }
+        .nav-cta{
+          background:#adff2f; color:#191970; padding:12px 22px; border-radius:999px;
+          font-weight:700; font-size:13px; letter-spacing:0.06em; text-decoration:none;
+          display:flex; align-items:center; gap:6px; border:2px solid #191970; transition: all 0.2s;
+        }
+        .nav-cta:hover{ transform: translateY(-2px); box-shadow: 4px 4px 0 #F5F5F5; }
+        .nav-toggle{ display:none; background:none; border:none; color:#F5F5F5; }
+        .ham{ display:flex; flex-direction:column; gap:5px; width:28px; }
+        .ham i{ display:block; height:2px; background:#F5F5F5; border-radius:2px; transition: all 0.35s cubic-bezier(0.16,1,0.3,1); }
+        .ham.active i:nth-child(1){ transform: translateY(7px) rotate(45deg); }
+        .ham.active i:nth-child(2){ opacity:0; transform: scaleX(0); }
+        .ham.active i:nth-child(3){ transform: translateY(-7px) rotate(-45deg); }
+        .nav-progress{ height:2px; background:rgba(245,245,245,0.1); width:100%; }
+        .nav-progress-bar{ height:100%; background:#adff2f; transition: width 0.1s linear; }
+        @media(max-width:1024px){
+          .nav-links{
+            position:fixed; top:90px; left:0; right:0; background:#191970;
+            flex-direction:column; padding:32px 24px 40px; gap:20px;
+            transform: translateY(-110%); opacity:0; pointer-events:none;
+            transition: all 0.5s cubic-bezier(0.16,1,0.3,1); border-bottom:4px solid #adff2f;
+          }
+          .nav-links.open{ transform: translateY(0); opacity:1; pointer-events:auto; }
+          .nav-toggle{ display:block; }
+          .nb-nav.scrolled .nav-links{ top:70px; }
+        }
+
+        /* HERO */
+        .hero{ position:relative; height:100vh; min-height:680px; overflow:hidden; background:#191970; }
+        .hero-slides{ position:absolute; inset:0; }
+        .hero-slide{ position:absolute; inset:0; opacity:0; transition: opacity 0.9s ease; }
+        .hero-slide.active{ opacity:1; }
+        .hero-bg{
+          position:absolute; inset:0; background-size:cover; background-position:center;
+          transform: scale(1.08); transition: transform 6s cubic-bezier(0.16,1,0.3,1);
+        }
+        .hero-slide.active .hero-bg{ transform: scale(1); }
+        .hero-overlay{
+          position:absolute; inset:0;
+          background: linear-gradient(180deg, rgba(25,25,112,0.82) 0%, rgba(25,25,112,0.55) 50%, rgba(25,25,112,0.88) 100%);
+        }
+        .hero-content{
+          position:relative; z-index:2; height:100%; display:flex; flex-direction:column;
+          justify-content:center; max-width:1240px; margin:0 auto; padding:120px 24px 80px;
+        }
+        .hero-vr{
+          position:absolute; right:24px; top:50%; transform: translateY(-50%) rotate(90deg);
+          font-family:'Barlow Condensed'; font-weight:900; font-size:14px; letter-spacing:0.4em;
+          color:rgba(245,245,245,0.35); transform-origin:right center; display:none;
+        }
+        @media(min-width:1280px){ .hero-vr{ display:block; } }
+        .badge{
+          display:inline-block; background:#adff2f; color:#191970; font-weight:700; font-size:11px;
+          letter-spacing:0.14em; padding:6px 14px; border-radius:999px; border:2px solid #191970;
+        }
+        .hero-kicker{ display:flex; align-items:center; gap:16px; flex-wrap:wrap; margin-bottom:18px; }
+        .hero-kicker h2{ color:#F5F5F5; font-size:14px; font-weight:600; letter-spacing:0.18em; margin:0; }
+        .hero-title{
+          font-family:'Barlow Condensed', sans-serif; font-weight:900; line-height:0.86;
+          font-size: clamp(52px, 11vw, 132px); letter-spacing:-0.04em; margin:0;
+        }
+        .hero-title .outline{ color:transparent; -webkit-text-stroke: 1.5px #F5F5F5; }
+        .hero-title .solid{ color:#F5F5F5; }
+        .hero-bottom{ margin-top:28px; display:flex; gap:32px; align-items:flex-end; flex-wrap:wrap; }
+        .hero-bottom p{ color:rgba(245,245,245,0.85); font-size:16px; line-height:1.6; max-width:520px; margin:0; }
+        .hero-actions{ display:flex; gap:12px; flex-wrap:wrap; }
+        .btn-primary{
+          background:#adff2f; color:#191970; border:2px solid #191970; border-radius:999px;
+          padding:16px 28px; font-weight:800; font-size:14px; letter-spacing:0.06em;
+          text-decoration:none; display:inline-flex; align-items:center; gap:8px;
+          transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+        }
+        .btn-primary:hover{ transform: translateY(-3px) rotate(0.5deg); box-shadow: 6px 6px 0 #F5F5F5; }
+        .btn-ghost{
+          background:transparent; color:#F5F5F5; border:2px solid rgba(245,245,245,0.35);
+          border-radius:999px; padding:16px 28px; font-weight:700; font-size:14px;
+          text-decoration:none; transition: all 0.25s;
+        }
+        .btn-ghost:hover{ border-color:#adff2f; color:#adff2f; background: rgba(173,255,47,0.08); }
+        .hero-indicators{ position:absolute; left:24px; bottom:32px; z-index:3; display:flex; gap:10px; }
+        .h-dot{ width:36px; height:4px; border-radius:999px; border:none; background:rgba(245,245,245,0.3); transition: all 0.3s; }
+        .h-dot.active{ background:#adff2f; width:56px; }
+        .hero-progress{ position:absolute; left:0; right:0; bottom:0; height:4px; background:rgba(245,245,245,0.12); z-index:3; }
+        .hero-progress-fill{ height:100%; background:#adff2f; transition: width 0.1s linear; }
+
+        /* INTRO */
+        .intro{ background:#F5F5F5; padding:100px 0; border-bottom:2px solid #191970; }
+        .intro-grid{ display:grid; grid-template-columns: 1.2fr 0.8fr; gap:48px; align-items:start; }
+        .eyebrow{ font-weight:800; font-size:12px; letter-spacing:0.22em; color:#191970; opacity:0.5; margin-bottom:16px; }
+        .intro h2{ font-family:'Barlow Condensed'; font-weight:900; font-size: clamp(28px,4vw,44px); line-height:1.05; letter-spacing:-0.02em; margin:0; }
+        .intro h2 .lime{ background:#adff2f; padding:0 10px; border-radius:10px; border:2px solid #191970; transform: rotate(-1deg); display:inline-block; }
+        .intro h2 .midnight{ background:#191970; color:#F5F5F5; padding:0 10px; border-radius:10px; display:inline-block; }
+        .intro p{ font-size:18px; line-height:1.7; margin:0 0 16px; }
+        .intro-small{ font-size:15px !important; opacity:0.75; }
+        @media(max-width:900px){ .intro-grid{ grid-template-columns:1fr; } }
+
+        /* SERVICES */
+        .services{ background:#191970; padding:100px 0; position:relative; }
+        .section-head{ margin-bottom:48px; }
+        .section-head h2{
+          font-family:'Barlow Condensed'; font-weight:900; font-size: clamp(36px,6vw,72px);
+          line-height:0.9; letter-spacing:-0.03em; color:#F5F5F5; margin:0 0 12px;
+        }
+        .section-head h2 span{ color:#adff2f; }
+        .section-head p{ color:rgba(245,245,245,0.7); font-size:16px; margin:0; }
+        .section-head.light h2{ color:#191970; }
+        .section-head.light h2 span{ background:#adff2f; border:2px solid #191970; padding:0 12px; border-radius:16px; color:#191970; display:inline-block; transform: rotate(1deg); }
+        .section-head.light p{ color:rgba(25,25,112,0.6); }
+        .services-grid{ display:grid; grid-template-columns: repeat(4,1fr); gap:20px; }
+        @media(max-width:1100px){ .services-grid{ grid-template-columns: repeat(2,1fr); } }
+        @media(max-width:600px){ .services-grid{ grid-template-columns:1fr; } }
+        .service-card{
+          background:#F5F5F5; border:2px solid #191970; border-radius:24px; padding:28px;
+          transition: all 0.4s cubic-bezier(0.16,1,0.3,1); position:relative; overflow:hidden;
+        }
+        .service-card:hover{
+          background:#adff2f; transform: translateY(-8px) rotate(1deg);
+          box-shadow: 8px 8px 0 #191970;
+        }
+        .service-top{ display:flex; justify-content:space-between; align-items:flex-start; margin-bottom:28px; }
+        .service-icon{
+          width:56px; height:56px; border-radius:14px; background:#191970; color:#adff2f;
+          display:flex; align-items:center; justify-content:center; border:2px solid #191970;
+        }
+        .service-tag{ font-weight:900; font-size:12px; letter-spacing:0.12em; background:#191970; color:#F5F5F5; padding:6px 10px; border-radius:999px; }
+        .service-card h3{ font-family:'Barlow Condensed'; font-weight:900; font-size:26px; line-height:0.95; margin:0 0 12px; letter-spacing:-0.02em; }
+        .service-card p{ font-size:14px; line-height:1.6; margin:0; opacity:0.85; }
+        .service-arrow{
+          position:absolute; right:18px; bottom:18px; width:32px; height:32px; border-radius:50%;
+          background:#191970; color:#F5F5F5; display:flex; align-items:center; justify-content:center;
+          transform: translateY(8px); opacity:0; transition: all 0.3s;
+        }
+        .service-card:hover .service-arrow{ transform: translateY(0); opacity:1; }
+
+        /* PORTFOLIO */
+        .portfolio{ background:#F5F5F5; }
+        .portfolio .container:first-child{ padding-top:100px; padding-bottom:20px; }
+        .portfolio-item{ padding:60px 0; border-top:2px solid #191970; position:relative; }
+        .portfolio-item.light{ background:#F5F5F5; color:#191970; }
+        .portfolio-item.dark{ background:#191970; color:#F5F5F5; }
+        .portfolio-wrap{ display:grid; grid-template-columns: 1.1fr 0.9fr; gap:48px; align-items:center; }
+        .portfolio-wrap.reverse{ direction:rtl; }
+        .portfolio-wrap.reverse > *{ direction:ltr; }
+        .portfolio-img-wrap{ position:relative; border-radius:24px; overflow:hidden; border:2px solid #191970; }
+        .portfolio-item.dark .portfolio-img-wrap{ border-color:#F5F5F5; }
+        .portfolio-img{
+          height:420px; background-size:cover; background-position:center;
+          filter: grayscale(100%); transition: all 0.7s cubic-bezier(0.16,1,0.3,1);
+          transform: scale(1.02);
+        }
+        .portfolio-card:hover .portfolio-img, .portfolio-img-wrap:hover .portfolio-img{
+          filter: grayscale(0%); transform: scale(1.06);
+        }
+        .img-badge{
+          position:absolute; top:16px; left:16px; background:#adff2f; color:#191970;
+          font-weight:800; font-size:11px; letter-spacing:0.08em; padding:8px 14px;
+          border-radius:999px; border:2px solid #191970;
+        }
+        .portfolio-text h3{ font-family:'Barlow Condensed'; font-weight:900; font-size: clamp(28px,4vw,48px); line-height:0.9; letter-spacing:-0.02em; margin:12px 0 16px; }
+        .portfolio-text h3 a{ color:inherit; text-decoration:none; }
+        .portfolio-meta{ font-weight:700; font-size:12px; letter-spacing:0.14em; opacity:0.6; }
+        .portfolio-text p{ font-size:16px; line-height:1.7; opacity:0.85; margin:0 0 24px; max-width:520px; }
+        .btn-portfolio{
+          display:inline-flex; align-items:center; gap:8px; padding:14px 22px; border-radius:999px;
+          font-weight:800; font-size:13px; letter-spacing:0.06em; text-decoration:none;
+          border:2px solid #191970; transition: all 0.25s;
+        }
+        .portfolio-item.light .btn-portfolio{ background:#191970; color:#F5F5F5; }
+        .portfolio-item.light .btn-portfolio:hover{ background:#adff2f; color:#191970; transform: translateY(-2px); box-shadow: 4px 4px 0 #191970; }
+        .portfolio-item.dark .btn-portfolio{ background:#F5F5F5; color:#191970; border-color:#F5F5F5; }
+        .portfolio-item.dark .btn-portfolio:hover{ background:#adff2f; border-color:#191970; color:#191970; }
+        @media(max-width:900px){
+          .portfolio-wrap{ grid-template-columns:1fr; gap:24px; }
+          .portfolio-wrap.reverse{ direction:ltr; }
+          .portfolio-img{ height:300px; }
+        }
+
+        /* FOOTER */
+        .footer{ background:#191970; color:#F5F5F5; border-top:4px solid #adff2f; padding:80px 0 32px; }
+        .footer-top{ display:flex; justify-content:space-between; align-items:flex-end; gap:24px; flex-wrap:wrap; padding-bottom:48px; border-bottom:2px solid rgba(245,245,245,0.12); margin-bottom:48px; }
+        .footer-top h2{ font-family:'Barlow Condensed'; font-weight:900; font-size: clamp(40px,7vw,84px); line-height:0.85; margin:0; letter-spacing:-0.03em; }
+        .footer-top h2 span{ color:#adff2f; }
+        .footer-cta{
+          font-family:'Barlow Condensed'; font-weight:900; font-size:22px; color:#191970;
+          background:#adff2f; padding:18px 28px; border-radius:999px; text-decoration:none;
+          display:inline-flex; align-items:center; gap:10px; border:2px solid #191970;
+          transition: all 0.25s;
+        }
+        .footer-cta:hover{ transform: translateY(-3px) rotate(-1deg); box-shadow: 6px 6px 0 #F5F5F5; }
+        .footer-grid{ display:grid; grid-template-columns: 1.4fr 0.8fr 0.8fr 1fr; gap:32px; }
+        @media(max-width:900px){ .footer-grid{ grid-template-columns:1fr 1fr; } }
+        @media(max-width:600px){ .footer-grid{ grid-template-columns:1fr; } }
+        .footer h4{ font-weight:800; font-size:14px; letter-spacing:0.12em; text-transform:uppercase; margin:0 0 16px; color:#adff2f; }
+        .footer p{ font-size:14px; line-height:1.7; opacity:0.8; margin:0; }
+        .footer ul{ list-style:none; padding:0; margin:0; display:flex; flex-direction:column; gap:10px; }
+        .footer ul a{ color:#F5F5F5; text-decoration:none; font-size:14px; opacity:0.8; transition: color 0.2s; }
+        .footer ul a:hover{ color:#adff2f; opacity:1; }
+        .socials{ display:flex; gap:10px; margin-top:20px; }
+        .socials a{
+          width:40px; height:40px; border-radius:50%; border:2px solid rgba(245,245,245,0.2);
+          display:flex; align-items:center; justify-content:center; color:#F5F5F5; text-decoration:none;
+          font-weight:800; font-size:12px; transition: all 0.2s;
+        }
+        .socials a:hover{ background:#adff2f; color:#191970; border-color:#191970; transform: translateY(-2px); }
+        .contact-list{ gap:12px !important; }
+        .footer-bottom{ margin-top:48px; padding-top:24px; border-top:1px solid rgba(245,245,245,0.1); text-align:center; }
+        .footer-bottom p{ font-size:12px; opacity:0.5; letter-spacing:0.04em; }
+
+        /* Reveal */
+        .reveal{ opacity:0; transform: translateY(28px); transition: all 0.8s cubic-bezier(0.16,1,0.3,1); }
+        .reveal.in-view{ opacity:1; transform: translateY(0); }
+        .reveal:nth-child(2){ transition-delay:0.08s; }
+        .reveal:nth-child(3){ transition-delay:0.16s; }
+      
+
+.hero-massive{font-family:'Barlow Condensed',sans-serif;font-weight:900;font-size:clamp(48px,8vw,120px);line-height:0.85;letter-spacing:-0.06em;color:#F5F5F5;margin:12px 0 18px;text-transform:uppercase}
+.solid-lime{background:#adff2f;color:#191970;padding:0 18px;border-radius:18px;border:3px solid #191970;display:inline-block;transform:rotate(-1.5deg)}
+.eyebrow-lime{font-weight:800;font-size:11px;letter-spacing:0.22em;background:#adff2f;color:#191970;padding:7px 14px;border-radius:999px;border:2px solid #191970;display:inline-block}
+.hero-sub{font-size:16px;line-height:1.7;color:rgba(245,245,245,0.9);max-width:720px;margin:0}
+.produk-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;margin-top:20px}
+@media(max-width:1100px){.produk-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.produk-grid{grid-template-columns:1fr}}
+.produk-card{background:#F5F5F5;border:3px solid #191970;border-radius:24px;overflow:hidden;padding:0;position:relative;transform:scale(0.9) rotateX(27deg) rotateY(-54deg) rotate(20deg);transform-style:preserve-3d;opacity:0;transition:transform 0.9s cubic-bezier(0.16,1,0.3,1),opacity 0.6s ease,box-shadow 0.3s;will-change:transform;cursor:pointer}
+.produk-card.in-view{transform:scale(1) rotateX(0) rotateY(0) rotate(0deg);opacity:1}
+.produk-card:hover{transform:translateY(-8px) scale(1.02) rotate(0deg) !important;box-shadow:10px 10px 0 #191970;background:#adff2f}
+.produk-img-wrap{position:relative;height:220px;overflow:hidden;border-bottom:3px solid #191970;background:#191970}
+.produk-img{width:100%;height:100%;object-fit:cover;filter:grayscale(100%);transition:all 0.7s cubic-bezier(0.16,1,0.3,1);transform:scale(1.02)}
+.produk-card:hover .produk-img{filter:grayscale(0%);transform:scale(1.08)}
+.produk-badge{position:absolute;top:12px;left:12px;background:#adff2f;color:#191970;font-weight:900;font-size:10px;letter-spacing:0.12em;padding:6px 12px;border-radius:999px;border:2px solid #191970}
+.produk-body{padding:18px 18px 20px}
+.produk-body h3{font-family:'Barlow Condensed';font-weight:900;font-size:20px;line-height:0.95;margin:0 0 6px;letter-spacing:-0.02em}
+.produk-body p{font-size:12px;line-height:1.5;opacity:0.75;margin:0 0 10px}
+.produk-code{font-family:monospace;font-weight:800;font-size:11px;background:#191970;color:#adff2f;padding:4px 8px;border-radius:6px;display:inline-block}
+.jost-system{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin:24px 0}
+@media(max-width:900px){.jost-system{grid-template-columns:1fr}}
+.system-card{background:#F5F5F5;border:3px solid #191970;border-radius:20px;padding:20px;transition:all 0.3s}
+.system-card:hover{background:#adff2f;transform:translateY(-4px) rotate(0.5deg);box-shadow:6px 6px 0 #191970}
+.system-card h4{font-family:'Barlow Condensed';font-weight:900;font-size:20px;margin:0 0 8px}
+.system-card p{font-size:13px;line-height:1.6;margin:0;opacity:0.85}
+
+/* Product Modal */
+.prod-modal{position:fixed;inset:0;z-index:3000;background:rgba(25,25,112,0.88);backdrop-filter:blur(12px);display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity 0.35s}
+.prod-modal.open{opacity:1;pointer-events:auto}
+.prod-modal-content{background:#F5F5F5;color:#191970;max-width:980px;width:100%;max-height:90vh;overflow:auto;border-radius:28px;border:4px solid #191970;position:relative;transform:translateY(30px) scale(0.96) rotate(1deg);transition:transform 0.5s cubic-bezier(0.16,1,0.3,1);box-shadow:14px 14px 0 #adff2f;display:grid;grid-template-columns:1.1fr 0.9fr}
+.prod-modal.open .prod-modal-content{transform:translateY(0) scale(1) rotate(0deg)}
+@media(max-width:860px){.prod-modal-content{grid-template-columns:1fr}}
+.prod-modal-img{position:relative;height:100%;min-height:360px;background:#191970;overflow:hidden;border-right:4px solid #191970}
+@media(max-width:860px){.prod-modal-img{border-right:none;border-bottom:4px solid #191970;min-height:320px}}
+.prod-modal-img img{width:100%;height:100%;object-fit:cover}
+.prod-modal-body{padding:28px 26px;position:relative}
+.prod-modal-close{position:absolute;top:14px;right:14px;width:44px;height:44px;border-radius:50%;background:#191970;color:#F5F5F5;border:2px solid #191970;font-size:22px;font-weight:800;display:flex;align-items:center;justify-content:center;cursor:pointer;z-index:2;transition:all 0.2s}
+.prod-modal-close:hover{background:#adff2f;color:#191970;transform:rotate(90deg)}
+.prod-modal-badge{background:#adff2f;color:#191970;border:2px solid #191970;font-weight:900;font-size:10px;letter-spacing:0.12em;padding:6px 12px;border-radius:999px;display:inline-block;margin-bottom:12px}
+.prod-modal-body h2{font-family:'Barlow Condensed';font-weight:900;font-size:clamp(26px,4vw,38px);line-height:0.92;letter-spacing:-0.02em;margin:0 0 10px}
+.prod-modal-code{font-family:monospace;background:#191970;color:#adff2f;padding:6px 10px;border-radius:8px;font-weight:800;font-size:12px;display:inline-block;margin-bottom:16px}
+.prod-modal-desc{font-size:14px;line-height:1.7;margin:0 0 14px}
+.prod-modal-specs{background:#fff;border:2px solid #191970;border-radius:16px;padding:16px;margin:16px 0}
+.prod-modal-specs h4{font-family:'Barlow Condensed';font-weight:900;font-size:16px;margin:0 0 8px;letter-spacing:0.04em}
+.prod-modal-specs ul{margin:0;padding-left:18px}
+.prod-modal-specs li{font-size:13px;line-height:1.6;margin-bottom:6px}
+.prod-modal-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:18px}
+.btn-modal-primary{background:#adff2f;color:#191970;border:3px solid #191970;padding:12px 20px;border-radius:999px;font-weight:800;font-size:13px;text-decoration:none;display:inline-flex;align-items:center;gap:8px;transition:all 0.25s}
+.btn-modal-primary:hover{transform:translateY(-2px);box-shadow:4px 4px 0 #191970}
+.btn-modal-ghost{background:#F5F5F5;color:#191970;border:2px solid #191970;padding:12px 20px;border-radius:999px;font-weight:700;font-size:13px;cursor:pointer;transition:all 0.25s}
+.btn-modal-ghost:hover{background:#191970;color:#F5F5F5}
+.edit-hint{font-size:11px;opacity:0.6;margin-top:12px;font-style:italic}
+
+</style>
 </head>
 <body>
+<div class="custom-cursor" id="cursor"></div>
+<div class="custom-cursor-dot" id="cursorDot"></div>
+<div class="loader" id="loader"><div class="loader-inner"><div class="loader-logo">JOST<span class="dot">.</span></div><div class="loader-circle-wrap"><svg width="80" height="80" viewBox="0 0 80 80"><circle cx="40" cy="40" r="34" stroke="rgba(245,245,245,0.15)" stroke-width="4" fill="none"></circle><circle class="loader-progress" cx="40" cy="40" r="34" stroke="#adff2f" stroke-width="4" fill="none" stroke-linecap="round" stroke-dasharray="213.6" stroke-dashoffset="213.6"></circle></svg><span class="loader-pct">SAFETY</span></div></div></div>
 
-    <!-- Navigation -->
-    <nav class="glass-nav fixed top-0 w-full z-50 px-6 py-4 flex justify-between items-center">
-        <div class="flex items-center space-x-3">
-            <div class="w-12 h-12 bg-amber-400 rounded-xl flex items-center justify-center text-primary font-black text-xl shadow-lg">NBI</div>
-            <div>
-                <h1 class="text-lg font-extrabold tracking-tight">NBIPARTS</h1>
-                <p class="text-[10px] uppercase tracking-[3px] text-amber-400 font-bold">Premium European Truck Parts</p>
-            </div>
+<nav class="nb-nav" id="navbar" style="height:90px"><div class="nb-nav-inner"><a href="#" class="logo magnetic">NBIPARTS<span class="logo-dot">.</span></a><div class="nav-links" id="navLinks"><a href="#home" class="nav-link magnetic"><span>JOST</span></a><a href="#systems" class="nav-link magnetic"><span>Systems</span></a><a href="#products" class="nav-link magnetic"><span>Products</span></a><a href="#contact" class="nav-cta">GET QUOTE →</a></div><button class="nav-toggle" id="navToggle"><span class="ham" id="ham"><i></i><i></i><i></i></span></button></div><div class="nav-progress"><div class="nav-progress-bar" id="navProgress"></div></div></nav>
+
+<section id="home" class="hero" style="min-height:86vh">
+  <div class="hero-slides"><div class="hero-slide active"><div class="hero-bg" style="background-image:url('https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?q=80&w=2070&auto=format&fit=crop')"></div><div class="hero-overlay" style="background:linear-gradient(180deg, rgba(25,25,112,0.88) 0%, rgba(25,25,112,0.6) 50%, rgba(25,25,112,0.92) 100%)"></div></div></div>
+  <div class="hero-content" style="padding-top:140px">
+    <div class="reveal in-view"><span class="eyebrow-lime">JOST WORLD — GLOBAL LEADER #1</span></div>
+    <h1 class="hero-massive reveal in-view"><span style="display:block">JOST</span><span class="solid-lime">SAFETY SYSTEMS</span></h1>
+    <div class="reveal in-view"><p class="hero-sub">JOST adalah produsen dan pemasok sistem kritis keselamatan global terkemuka untuk industri truk dan trailer. Sebagai pemasok <strong>roda kelima dan roda pendaratan nomor satu secara global</strong>, JOST adalah pemimpin pasar untuk sistem Antarmuka Kendaraan. Klik gambar produk untuk lihat deskripsi lengkap.</p></div>
+  </div>
+</section>
+
+<section id="systems" class="intro" style="padding:60px 0;background:#F5F5F5;border-bottom:3px solid #191970">
+  <div class="container">
+    <div class="section-head light reveal" style="margin-bottom:24px"><h2>JOST <span>3 SYSTEMS</span></h2><p>Produk berkualitas bermerek dikelompokkan dalam tiga sistem kritis</p></div>
+    <div class="jost-system">
+      <div class="system-card reveal"><h4>01 — Vehicle Interface</h4><p>Berfokus pada produk yang diperlukan untuk mengoperasikan kombinasi truk dan trailer seperti <strong>roda kelima (fifth wheel) dan roda pendaratan (landing gears)</strong>. JOST adalah #1 global.</p></div>
+      <div class="system-card reveal"><h4>02 — Handling Solutions</h4><p>Termasuk teknologi kontainer dan produk silinder hidrolik seperti <strong>Twist Lock QA 38 NS, Ball Bearing Turntables</strong>.</p></div>
+      <div class="system-card reveal"><h4>03 — Maneuver</h4><p>Berfokus pada <strong>gandar truk dan trailer serta kemudi paksa</strong> seperti Axle 20T TL 2320, Hubodometers.</p></div>
+    </div>
+  </div>
+</section>
+
+<section id="products" class="portfolio" style="background:#F5F5F5;padding-top:40px">
+  <div class="container">
+    <div class="section-head light reveal"><h2>PRODUK <span>JOST ORIGINAL</span></h2><p>18 SKU JOST ready stock Balikpapan — Klik gambar untuk buka popup deskripsi. Bisa kamu edit deskripsi di file JS.</p></div>
+    <div class="produk-grid">
+
+      <div class="produk-card reveal" data-index="0">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Axle 20T TL 2320 J20NA2320">
+          <span class="produk-badge">AXLE • 20T</span>
         </div>
-        <div class="hidden lg:flex space-x-10 text-xs uppercase tracking-widest font-bold items-center">
-            <a href="index.html" class="hover:text-amber-400 transition"><i class="fas fa-arrow-left mr-2"></i> Kembali ke Beranda</a>
-            <a href="#about" class="hover:text-amber-400 transition">Tentang JOST</a>
-            <a href="#parts-book" class="hover:text-amber-400 transition">Parts Book</a>
-            <a href="#other-products" class="hover:text-amber-400 transition">Produk Lain</a>
-            <a href="https://wa.me/6281350501650" class="bg-amber-400 text-primary px-6 py-2 rounded-full hover:scale-105 transition transform">Hubungi Sales</a>
+        <div class="produk-body">
+          <h3>Axle 20T TL 2320 J20NA2320</h3>
+          <p>Axle trailer heavy duty 20 ton, TL series untuk lowbed & flatbed tambang</p>
+          <span class="produk-code">J20NA2320</span>
         </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="pt-32 pb-20 px-6 relative overflow-hidden border-b border-white/10">
-        <div class="absolute inset-0 z-0 opacity-20">
-            <img src="https://images.unsplash.com/photo-1580901233033-9c0429715971?auto=format&fit=crop&q=80&w=1470" class="w-full h-full object-cover" alt="Trailer Parts Background">
-            <div class="absolute inset-0 bg-gradient-to-t from-primary to-transparent"></div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="1">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Ball Bearing Turntables">
+          <span class="produk-badge">TURNTABLE</span>
         </div>
-        <div class="max-w-5xl mx-auto relative z-10 text-center">
-            <div class="inline-block bg-amber-400/10 border border-amber-400/30 text-amber-400 px-4 py-2 rounded-full text-xs font-bold tracking-widest uppercase mb-6">
-                Official Catalog
-            </div>
-            <h1 class="text-5xl md:text-7xl font-black mb-6 tracking-tight">JOST <span class="text-amber-400">COMPONENTS</span></h1>
-            <p class="text-xl text-gray-300 max-w-3xl mx-auto leading-relaxed">
-                Produsen dan pemasok sistem kritis keselamatan global terkemuka untuk industri truk dan trailer.
-            </p>
+        <div class="produk-body">
+          <h3>Ball Bearing Turntables</h3>
+          <p>Turntable ball bearing untuk trailer & dolly, rotasi 360° presisi</p>
+          <span class="produk-code">TURNTABLE</span>
         </div>
-    </section>
-
-    <!-- About JOST Section -->
-    <section id="about" class="py-20 px-6 bg-accent">
-        <div class="max-w-6xl mx-auto grid md:grid-cols-2 gap-12 items-center">
-            <div>
-                <h3 class="text-amber-400 font-bold tracking-widest mb-4 uppercase">Company Overview</h3>
-                <h2 class="text-3xl md:text-4xl font-black mb-6 leading-tight">Pemimpin Pasar Global Sistem Antarmuka Kendaraan</h2>
-                <div class="text-gray-400 space-y-4 leading-relaxed">
-                    <p>JOST menawarkan produk-produk berkualitas bermerek yang dikelompokkan dalam tiga sistem utama:</p>
-                    <ul class="space-y-4 mt-6">
-                        <li class="flex items-start">
-                            <i class="fas fa-truck-loading text-amber-400 mt-1 mr-4 text-xl"></i>
-                            <div>
-                                <strong class="text-white block mb-1">Antarmuka Kendaraan (Vehicle Interface)</strong>
-                                Fokus pada produk yang diperlukan untuk mengoperasikan kombinasi truk dan trailer kendaraan komersial, seperti <em>Fifth Wheel</em> (Roda Kelima) dan <em>Landing Gear</em> (Roda Pendaratan). JOST adalah pemasok nomor 1 secara global.
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-box text-amber-400 mt-1 mr-4 text-xl"></i>
-                            <div>
-                                <strong class="text-white block mb-1">Solusi Penanganan (Handling Solutions)</strong>
-                                Termasuk teknologi kontainer dan produk silinder hidrolik.
-                            </div>
-                        </li>
-                        <li class="flex items-start">
-                            <i class="fas fa-cogs text-amber-400 mt-1 mr-4 text-xl"></i>
-                            <div>
-                                <strong class="text-white block mb-1">Manuver (Maneuvering)</strong>
-                                Berfokus pada gandar (Axle) truk dan trailer serta sistem kemudi paksa.
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-            <div class="relative rounded-3xl overflow-hidden border border-white/10 shadow-2xl">
-                <img src="https://images.unsplash.com/photo-1601584115197-04ecc0da31d7?auto=format&fit=crop&q=80&w=800" alt="JOST Heavy Duty Parts" class="w-full object-cover">
-                <div class="absolute inset-0 bg-gradient-to-tr from-primary/80 to-transparent flex items-end p-8">
-                    <h3 class="text-2xl font-bold text-white tracking-widest">JOST <span class="text-amber-400">ENGINEERING</span></h3>
-                </div>
-            </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="2">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Ball Bearing Turntables KLK 500L">
+          <span class="produk-badge">TURNTABLE • KLK</span>
         </div>
-    </section>
-
-    <!-- Parts Book Table Section -->
-    <section id="parts-book" class="py-24 px-6">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-12">
-                <h3 class="text-amber-400 font-bold tracking-widest mb-2 uppercase">Spesifikasi Detail</h3>
-                <h2 class="text-4xl font-black mb-4">JOST Axle 18T & 20T (VREA01-20002)</h2>
-                <p class="text-gray-400">Axle 20T  J20NA2320, J20NA2550| Axle 18T  J18NA2320, J18NA2550 | Parts Book & Parts List</p>
-            </div>
-
-            <div class="bg-accent rounded-3xl border border-white/10 overflow-hidden shadow-2xl">
-                <div class="table-container overflow-x-auto p-1">
-                    <table class="w-full text-left border-collapse whitespace-nowrap">
-                        <thead>
-                            <tr class="bg-primary/50 text-amber-400 uppercase text-xs tracking-widest border-b border-white/10">
-                                <th class="p-4 font-bold rounded-tl-2xl">No. Drawing</th>
-                                <th class="p-4 font-bold">Part Number</th>
-                                <th class="p-4 font-bold">Description</th>
-                                <th class="p-4 font-bold rounded-tr-2xl text-center">Qty / Set</th>
-                            </tr>
-                        </thead>
-                        <tbody class="text-sm text-gray-300 divide-y divide-white/5">
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">1</td><td class="p-4 font-mono text-white">J10310145</td><td class="p-4">Axle Beam (18T/20T, TL 2320/2550)</td><td class="p-4 text-center">1</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">2</td><td class="p-4 font-mono text-white">J30510009</td><td class="p-4">Anchor Pin</td><td class="p-4 text-center">4</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">3</td><td class="p-4 font-mono text-white">J11201201</td><td class="p-4">Inner Hexagon Bolt</td><td class="p-4 text-center">4</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">4</td><td class="p-4 font-mono text-white">J20810011</td><td class="p-4">Cam Bush</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">5</td><td class="p-4 font-mono text-white">J10400002</td><td class="p-4">O Ring</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">6</td><td class="p-4 font-mono text-white">J20810008</td><td class="p-4">Thrust Ring</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">7</td><td class="p-4 font-mono text-white">J210004</td><td class="p-4">Circlip Camshaft</td><td class="p-4 text-center">4</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">8.a</td><td class="p-4 font-mono text-white text-amber-400">J220410040</td><td class="p-4">Left Camshaft</td><td class="p-4 text-center">1</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">8.b</td><td class="p-4 font-mono text-white text-amber-400">J220410039</td><td class="p-4">Right Camshaft</td><td class="p-4 text-center">1</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">9</td><td class="p-4 font-mono text-white">J20810007</td><td class="p-4">Nylon Ring</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">10</td><td class="p-4 font-mono text-white">J20810006</td><td class="p-4">Big-dust Wrapper</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">11</td><td class="p-4 font-mono text-white">J20710001</td><td class="p-4">Circlip</td><td class="p-4 text-center">4</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">12</td><td class="p-4 font-mono text-white">J20810005</td><td class="p-4">Middle-dust Wrapper</td><td class="p-4 text-center">4</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">13</td><td class="p-4 font-mono text-white">J20810003</td><td class="p-4">Cam Bearing</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">14</td><td class="p-4 font-mono text-white">J20810001</td><td class="p-4">Cap II</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">15/26</td><td class="p-4 font-mono text-white">J20800001/02</td><td class="p-4">Grease Nipple</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">16</td><td class="p-4 font-mono text-white">J20610002</td><td class="p-4">Bearing Box II</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">17</td><td class="p-4 font-mono text-white">J20610004</td><td class="p-4">Bearing Box I</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">18</td><td class="p-4 font-mono text-white">J20650003</td><td class="p-4">Hex Head Bolt M8x25</td><td class="p-4 text-center">12</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">19</td><td class="p-4 font-mono text-white">J20650002</td><td class="p-4">Washer</td><td class="p-4 text-center">12</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">20</td><td class="p-4 font-mono text-white">J10800001</td><td class="p-4">Spring Washer</td><td class="p-4 text-center">12</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">21</td><td class="p-4 font-mono text-white">J20650004</td><td class="p-4">Hex Nut M8</td><td class="p-4 text-center">12</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">22</td><td class="p-4 font-mono text-white">J60910002</td><td class="p-4">Slack Adjuster</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">23</td><td class="p-4 font-mono text-white">J20510004</td><td class="p-4">Locknut Washer</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">24</td><td class="p-4 font-mono text-white">J20510003</td><td class="p-4">Cam Locknut</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">25</td><td class="p-4 font-mono text-white">J20810002</td><td class="p-4">Cap I</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 bg-amber-400/5 transition"><td class="p-4">27</td><td class="p-4 font-mono text-amber-400 font-bold">J18A1131000A</td><td class="p-4 font-bold text-white">Brake Shoe Assy</td><td class="p-4 text-center font-bold">4</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4 pl-8 text-xs">27.1</td><td class="p-4 font-mono text-gray-400 text-xs">J18A1131000</td><td class="p-4 text-xs">Brake Shoe</td><td class="p-4 text-center text-xs">4</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4 pl-8 text-xs">27.2</td><td class="p-4 font-mono text-gray-400 text-xs">J30810004</td><td class="p-4 text-xs">Brake Lining</td><td class="p-4 text-center text-xs">8</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4 pl-8 text-xs">27.3</td><td class="p-4 font-mono text-gray-400 text-xs">J10801501</td><td class="p-4 text-xs">Tubular Rivet</td><td class="p-4 text-center text-xs">96</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">28</td><td class="p-4 font-mono text-white">J30510005</td><td class="p-4">Cam Roller</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">29</td><td class="p-4 font-mono text-white">J30650001</td><td class="p-4">Roller Bush</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">30</td><td class="p-4 font-mono text-white">J30510004</td><td class="p-4">Cam Roller</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">31</td><td class="p-4 font-mono text-white">J30510001</td><td class="p-4">Ring</td><td class="p-4 text-center">4</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">32</td><td class="p-4 font-mono text-white">J30710005</td><td class="p-4">Return Spring</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">33</td><td class="p-4 font-mono text-white">J30710004</td><td class="p-4">Retaining Spring I</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">34</td><td class="p-4 font-mono text-white">J30710002</td><td class="p-4">Retaining Spring II</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">35</td><td class="p-4 font-mono text-white">J60710001</td><td class="p-4">Slack Adjuster Spring</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">36</td><td class="p-4 font-mono text-white">J10510220</td><td class="p-4">Conical Ring</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">37</td><td class="p-4 font-mono text-white">J40810013</td><td class="p-4">Hub Sealing</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">38</td><td class="p-4 font-mono text-white">J40610124</td><td class="p-4">Bearing Oil Baffle</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 bg-amber-400/5 transition"><td class="p-4">39</td><td class="p-4 font-mono text-amber-400 font-bold">J32222001</td><td class="p-4 font-bold text-white">Bearing</td><td class="p-4 text-center font-bold">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">40</td><td class="p-4 font-mono text-white">J40410041</td><td class="p-4">Hub</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 bg-amber-400/5 transition"><td class="p-4">41</td><td class="p-4 font-mono text-amber-400 font-bold">J40410008</td><td class="p-4 font-bold text-white">Brake Drum</td><td class="p-4 text-center font-bold">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">42</td><td class="p-4 font-mono text-white">J40510022</td><td class="p-4">Wheel Stud</td><td class="p-4 text-center">20</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">43</td><td class="p-4 font-mono text-white">J32314001</td><td class="p-4">Bearing</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">44</td><td class="p-4 font-mono text-white">J10510139</td><td class="p-4">Lock Washer</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">45</td><td class="p-4 font-mono text-white">J10410004</td><td class="p-4">Axle End Locknut</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">46</td><td class="p-4 font-mono text-white">J11007101</td><td class="p-4">Split Pin</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">47</td><td class="p-4 font-mono text-white">J40610064</td><td class="p-4">Hub Cap</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">48</td><td class="p-4 font-mono text-white">J40710002</td><td class="p-4">Wheel Stud Elastic Sleeve</td><td class="p-4 text-center">8</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">49</td><td class="p-4 font-mono text-white">J40510042</td><td class="p-4">Wheel Nut</td><td class="p-4 text-center">20</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">50.a</td><td class="p-4 font-mono text-white">J40610092</td><td class="p-4">Dust Cover (Left down)</td><td class="p-4 text-center">1</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">50.b</td><td class="p-4 font-mono text-white">J40610089</td><td class="p-4">Dust Cover (Right down)</td><td class="p-4 text-center">1</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">51.a</td><td class="p-4 font-mono text-white">J40610072</td><td class="p-4">Dust Cover (Left Up)</td><td class="p-4 text-center">1</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">51.b</td><td class="p-4 font-mono text-white">J40610070</td><td class="p-4">Dust Cover (Right Up)</td><td class="p-4 text-center">1</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">52</td><td class="p-4 font-mono text-white">J21000001</td><td class="p-4">Washer</td><td class="p-4 text-center">8</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">53</td><td class="p-4 font-mono text-white">J11000001</td><td class="p-4">Spring Washer</td><td class="p-4 text-center">8</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">54</td><td class="p-4 font-mono text-white">J40810002</td><td class="p-4">Hex Head Bolt M10x16</td><td class="p-4 text-center">8</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">55</td><td class="p-4 font-mono text-white">J40810005</td><td class="p-4">Dust Ring</td><td class="p-4 text-center">2</td></tr>
-                            <tr class="hover:bg-white/5 transition"><td class="p-4">56</td><td class="p-4 font-mono text-white">J40810001</td><td class="p-4">Plug</td><td class="p-4 text-center">4</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-            <p class="text-xs text-gray-500 mt-4 italic">* Tabel ini menampilkan daftar suku cadang untuk JOST Axle 18T & 20T. Hubungi tim sales kami untuk ketersediaan stok dan harga.</p>
+        <div class="produk-body">
+          <h3>Ball Bearing Turntables KLK 500L</h3>
+          <p>KLK 500L series load capacity tinggi, anti-debu tambang</p>
+          <span class="produk-code">KLK 500L</span>
         </div>
-    </section>
-
-    <!-- Other JOST Products -->
-    <section id="other-products" class="py-24 px-6 bg-[#0d1b33]">
-        <div class="max-w-6xl mx-auto">
-            <div class="text-center mb-16">
-                <h3 class="text-amber-400 font-bold tracking-widest mb-2 uppercase">Koleksi Lengkap</h3>
-                <h2 class="text-4xl font-black">Produk JOST Lainnya</h2>
-            </div>
-
-            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
-                <!-- Product Items -->
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-circle-notch text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Ball Bearing Turntables</h4>
-                    <span class="text-xs text-gray-500 mt-auto bg-primary px-3 py-1 rounded-full">Standard & KLK 500L</span>
-                </div>
-                
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-link text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">JSK 38 C1 / G1</h4>
-                    <span class="text-xs text-gray-500 mt-auto bg-primary px-3 py-1 rounded-full">Fifth Wheel Coupling</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-link text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">JSK 50 / 52</h4>
-                    <span class="text-xs text-gray-500 mt-auto bg-primary px-3 py-1 rounded-full">Fifth Wheel Coupling</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-truck-pickup text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Jost Landing Gears</h4>
-                    <span class="text-xs text-gray-500 mt-auto bg-primary px-3 py-1 rounded-full">Support Legs</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-cogs text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">KZ 1016 King Pin</h4>
-                    <span class="text-xs text-gray-500 mt-auto bg-primary px-3 py-1 rounded-full">Trailer Component</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-lock text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Lock Jaw JSK52</h4>
-                    <span class="text-xs text-gray-500 mt-auto font-mono bg-primary px-3 py-1 rounded-full">SK8301-005</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-layer-group text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Pedestal Jost</h4>
-                    <span class="text-xs text-gray-500 mt-auto font-mono bg-primary px-3 py-1 rounded-full">SK8301-224 / SK2821-51</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-tools text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Repair Kit Bearing</h4>
-                    <span class="text-xs text-gray-500 mt-auto font-mono bg-primary px-3 py-1 rounded-full">SK2521-76</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-shield-alt text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Wearing Ring Fifthwheel</h4>
-                    <span class="text-xs text-gray-500 mt-auto font-mono bg-primary px-3 py-1 rounded-full">JSK 52 SK8301-223</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-compress-arrows-alt text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Twist Lock QA 38 NS</h4>
-                    <span class="text-xs text-gray-500 mt-auto bg-primary px-3 py-1 rounded-full">Container Lock</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-tachometer-alt text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Hubodometers</h4>
-                    <span class="text-xs text-gray-500 mt-auto bg-primary px-3 py-1 rounded-full">Distance Measuring</span>
-                </div>
-
-                <div class="product-card p-6 rounded-2xl flex flex-col items-center text-center">
-                    <i class="fas fa-bolt text-4xl text-amber-400 mb-4 opacity-80"></i>
-                    <h4 class="font-bold text-white text-sm mb-2">Front Hanger Plate</h4>
-                    <span class="text-xs text-gray-500 mt-auto font-mono bg-primary px-3 py-1 rounded-full">161801C</span>
-                </div>
-            </div>
-            
-            <div class="mt-16 text-center">
-                <a href="https://wa.me/6281350501650" target="_blank" class="btn-gold inline-block px-10 py-4 rounded-full text-sm uppercase shadow-xl">
-                    <i class="fab fa-whatsapp mr-2 text-lg"></i> Pesan Produk JOST Sekarang
-                </a>
-            </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="3">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Front Hanger Plate Only 161801C">
+          <span class="produk-badge">HANGER PLATE</span>
         </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="py-12 bg-primary px-6 border-t border-white/5 text-center">
-        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center gap-6">
-            <div class="flex items-center space-x-3">
-                <div class="w-10 h-10 bg-amber-400 rounded-lg flex items-center justify-center text-primary font-black text-sm">NBI</div>
-                <span class="text-lg font-bold">NBIPARTS</span>
-            </div>
-            <p class="text-gray-500 text-xs tracking-widest">&copy; 2025 NBIPARTS. SUPPLIER SPARE PART TRUCK EROPA INDONESIA.</p>
+        <div class="produk-body">
+          <h3>Front Hanger Plate Only 161801C</h3>
+          <p>Front hanger plate untuk suspension BPW / JOST</p>
+          <span class="produk-code">161801C</span>
         </div>
-    </footer>
+      </div>
+    
+      <div class="produk-card reveal" data-index="4">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Hubodometers">
+          <span class="produk-badge">HUBODOMETER</span>
+        </div>
+        <div class="produk-body">
+          <h3>Hubodometers</h3>
+          <p>Pencatat jarak tempuh trailer, akurasi tinggi untuk fleet management</p>
+          <span class="produk-code">HUBODOMETER</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="5">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Jost Landing Gears">
+          <span class="produk-badge">LANDING GEAR • #1 GLOBAL</span>
+        </div>
+        <div class="produk-body">
+          <h3>Jost Landing Gears</h3>
+          <p>Landing gear JOST nomor 1 global, lifting 24-28 ton</p>
+          <span class="produk-code">LANDING GEAR</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="6">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://masrudi21.github.io//NBIPARTS/products/truck-trailer/fifthweel.png" alt="JSK 38 C1 Fifth Wheel Coupling">
+          <span class="produk-badge">FIFTH WHEEL • JSK 38, JSK 50, JSK 52</span>
+        </div>
+        <div class="produk-body">
+          <h3>JSK 38, JSK 50, JSK 52 Fifth Wheel Coupling</h3>
+          <p>Heavy duty Fifth wheel coupling JSK 38, JSK 50, JSK 52, interface truk-trailer kritis keselamatan</p>
+          <span class="produk-code">JSK 38, JSK 50, JSK 52</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="7">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="JSK 38 G1 Fifth Wheel Coupling">
+          <span class="produk-badge">FIFTH WHEEL • JSK 38</span>
+        </div>
+        <div class="produk-body">
+          <h3>JSK 38 G1 Fifth Wheel Coupling</h3>
+          <p>Varian G1 dengan jaw lock reinforced untuk heavy haul</p>
+          <span class="produk-code">JSK 38 G1</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="8">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="JSK 50 Fifth Wheel Coupling">
+          <span class="produk-badge">FIFTH WHEEL • JSK 50</span>
+        </div>
+        <div class="produk-body">
+          <h3>JSK 50 Fifth Wheel Coupling</h3>
+          <p>JSK 50 heavy duty untuk kombinasi 40-60 ton</p>
+          <span class="produk-code">JSK 50</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="9">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="JSK 52 Fifth Wheel Coupling">
+          <span class="produk-badge">FIFTH WHEEL • JSK 52 • BESTSELLER</span>
+        </div>
+        <div class="produk-body">
+          <h3>JSK 52 Fifth Wheel Coupling</h3>
+          <p>JSK 52 premium, paling laku untuk fleet logistik Indonesia</p>
+          <span class="produk-code">JSK 52</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="10">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="KZ 1016 King Pin">
+          <span class="produk-badge">KING PIN • KZ</span>
+        </div>
+        <div class="produk-body">
+          <h3>KZ 1016 King Pin</h3>
+          <p>King pin 2 inch standard DIN, material alloy steel forged</p>
+          <span class="produk-code">KZ 1016</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="11">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Lock Jaw JSK52 SK8301-005">
+          <span class="produk-badge">SPAREPART • LOCK JAW</span>
+        </div>
+        <div class="produk-body">
+          <h3>Lock Jaw JSK52 SK8301-005</h3>
+          <p>Lock jaw original untuk JSK52, pengunci fifth wheel</p>
+          <span class="produk-code">SK8301-005</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="12">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Locking Bolt SK2405-01">
+          <span class="produk-badge">BOLT • SK2405</span>
+        </div>
+        <div class="produk-body">
+          <h3>Locking Bolt SK2405-01</h3>
+          <p>Locking bolt set untuk maintenance fifth wheel</p>
+          <span class="produk-code">SK2405-01</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="13">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Pedestal Jost for JSK52 SK8301-224">
+          <span class="produk-badge">PEDESTAL • JSK52</span>
+        </div>
+        <div class="produk-body">
+          <h3>Pedestal Jost for JSK52 SK8301-224</h3>
+          <p>Pedestal / dudukan untuk JSK52, presisi tinggi</p>
+          <span class="produk-code">SK8301-224</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="14">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Pedestal Jost SK2821-51">
+          <span class="produk-badge">PEDESTAL • SK2821</span>
+        </div>
+        <div class="produk-body">
+          <h3>Pedestal Jost SK2821-51</h3>
+          <p>Pedestal SK2821-51 untuk JSK 38 series</p>
+          <span class="produk-code">SK2821-51</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="15">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Repair Kit For Bearing SK2521-76">
+          <span class="produk-badge">REPAIR KIT</span>
+        </div>
+        <div class="produk-body">
+          <h3>Repair Kit For Bearing SK2521-76</h3>
+          <p>Repair kit bearing fifth wheel, lengkap seal & ring</p>
+          <span class="produk-code">SK2521-76</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="16">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Twist Lock QA 38 NS">
+          <span class="produk-badge">TWIST LOCK • CONTAINER</span>
+        </div>
+        <div class="produk-body">
+          <h3>Twist Lock QA 38 NS</h3>
+          <p>Twist lock container QA 38 NS, solusi penanganan kontainer</p>
+          <span class="produk-code">QA 38 NS</span>
+        </div>
+      </div>
+    
+      <div class="produk-card reveal" data-index="17">
+        <div class="produk-img-wrap">
+          <img class="produk-img" src="https://images.unsplash.com/photo-1486262715619-67b85e0b08d3?q=80&w=600&auto=format&fit=crop" alt="Wearing Ring Fifthwheel JSK 52 SK8301-223">
+          <span class="produk-badge">WEARING RING • JSK52</span>
+        </div>
+        <div class="produk-body">
+          <h3>Wearing Ring Fifthwheel JSK 52 SK8301-223</h3>
+          <p>Wearing ring / cincin aus untuk JSK52, ganti berkala</p>
+          <span class="produk-code">SK8301-223</span>
+        </div>
+      </div>
+    
+    </div>
+  </div>
+  <div style="height:60px"></div>
+</section>
 
+<div class="prod-modal" id="prodModal">
+  <div class="prod-modal-content">
+    <div class="prod-modal-img"><img id="modalImg" src="" alt=""><span id="modalBadge" class="produk-badge" style="top:16px;left:16px"></span></div>
+    <div class="prod-modal-body">
+      <button class="prod-modal-close" id="modalClose">×</button>
+      <span id="modalBadge2" class="prod-modal-badge"></span>
+      <h2 id="modalTitle"></h2>
+      <span id="modalCode" class="prod-modal-code"></span>
+      <p id="modalShort" class="prod-modal-desc" style="font-weight:600"></p>
+      <p id="modalLong" class="prod-modal-desc"></p>
+      <div class="prod-modal-specs"><h4>Spesifikasi Teknis</h4><ul id="modalSpecs"></ul></div>
+      <div class="prod-modal-actions"><a href="mailto:nbiparts.sales@.com" class="btn-modal-primary">Tanya Stok →</a><button class="btn-modal-ghost" id="modalClose2">Tutup</button></div>
+      <p class="edit-hint">💡 Untuk edit deskripsi: buka file HTML ini, cari bagian products_data → ganti field long & specs. Atau hubungi saya untuk dibikinin admin panel.</p>
+    </div>
+  </div>
+</div>
+
+<footer id="contact" class="footer"><div class="container"><div class="footer-top reveal"><h2>JOST <span>ORIGINAL?</span></h2><a href="mailto:info@nbiparts.com" class="footer-cta magnetic">info@nbiparts.com →</a></div><div class="footer-grid"><div><h4>NBIPARTS - JOST Partner</h4><p>Distributor resmi JOST di Indonesia untuk Vehicle Interface, Handling, Maneuver. Garansi original, ready stock 24/7.</p></div><div><h4>Systems</h4><ul><li><a href="#">Vehicle Interface</a></li><li><a href="#">Handling Solutions</a></li><li><a href="#">Maneuver</a></li></ul></div><div><h4>Contact</h4><ul class="contact-list"><li>Balikpapan - Jakarta - Surabaya</li><li>+62 812 3456 7890</li><li>info@nbiparts.com</li></ul></div></div><div class="footer-bottom"><p>© 2026 NBIPARTS x JOST. Midnight Lime Edition.</p></div></div></footer>
+
+<script>
+const productsData = [{"title": "Axle 20T TL 2320 J20NA2320", "code": "J20NA2320", "badge": "AXLE • 20T", "short": "Axle trailer heavy duty 20 ton, TL series untuk lowbed & flatbed tambang", "long": "Axle 20T TL 2320 J20NA2320 adalah gandar heavy duty JOST untuk aplikasi tambang dan logistik berat. Kapasitas 20 ton per axle, desain TL (Track Length) 2320mm untuk stabilitas maksimal di jalan off-road. Kompatibel dengan suspension BPW dan JOST.", "specs": ["Kapasitas: 20 Ton per axle", "Track: 2320mm TL series", "Bearing: Tapered roller heavy duty", "Aplikasi: Lowbed, flatbed, dolly tambang", "Material: Forged steel, heat treated"]}, {"title": "Ball Bearing Turntables", "code": "TURNTABLE", "badge": "TURNTABLE", "short": "Turntable ball bearing untuk trailer & dolly, rotasi 360° presisi", "long": "Ball Bearing Turntables JOST memungkinkan rotasi 360 derajat yang halus untuk dolly dan trailer modular. Menggunakan bola baja presisi dengan raceway hardened untuk umur panjang di medan berdebu.", "specs": ["Rotasi: 360° continuous", "Bearing: Ball bearing double row", "Load: Hingga 25 ton", "Grease: Long life, anti-debu"]}, {"title": "Ball Bearing Turntables KLK 500L", "code": "KLK 500L", "badge": "TURNTABLE • KLK", "short": "KLK 500L series load capacity tinggi, anti-debu tambang", "long": "Varian KLK 500L dengan diameter 500mm dan lock mechanism. Lebih kuat untuk heavy haul 40-60 ton. Sudah termasuk labyrinth seal untuk proteksi debu tambang Kalimantan.", "specs": ["Diameter: 500mm", "Lock: Pneumatic / manual", "Seal: Labyrinth anti-debu", "Untuk: Modular trailer, SPMT"]}, {"title": "Front Hanger Plate Only 161801C", "code": "161801C", "badge": "HANGER PLATE", "short": "Front hanger plate untuk suspension BPW / JOST", "long": "Front Hanger Plate Only 161801C adalah dudukan depan untuk leaf spring suspension. Material high tensile steel, lubang presisi untuk bushing.", "specs": ["Part No: 161801C", "Posisi: Front hanger", "Kompatibel: BPW, JOST, YORK", "Material: S355MC high tensile"]}, {"title": "Hubodometers", "code": "HUBODOMETER", "badge": "HUBODOMETER", "short": "Pencatat jarak tempuh trailer, akurasi tinggi untuk fleet management", "long": "Hubodometers JOST mencatat kilometer trailer secara mekanik, tidak butuh listrik. Penting untuk jadwal maintenance bearing dan ban fleet logistik.", "specs": ["Tipe: Mekanik, hub mounted", "Akurasi: ±1%", "Ratio: Tersedia 1:1 hingga 1:8", "Untuk: Trailer, dolly"]}, {"title": "Jost Landing Gears", "code": "LANDING GEAR", "badge": "LANDING GEAR • #1 GLOBAL", "short": "Landing gear JOST nomor 1 global, lifting 24-28 ton", "long": "Jost Landing Gears adalah kaki penopang trailer nomor 1 dunia. Lifting capacity 24-28 ton, 2-speed gearbox (high speed untuk kosong, low speed untuk bermuatan). Legenda di fleet Eropa.", "specs": ["Capacity: 24-28 ton static", "Lift: 400-500mm stroke", "Gearbox: 2-speed JOST", "Foot: S-foot / T-foot / Compensating"]}, {"title": "Heavy duty – Fifth wheel couplings", "code": "JSK 38, JSK 50, JSK 52", "badge": "FIFTH WHEEL • JSK 38, JSK 50, JSK 52", "short": "Heavy duty Fifth wheel coupling JSK 38, JSK 50, JSK 52, interface truk-trailer kritis keselamatan", "long": "Heavy duty – Fifth wheel couplings SK 38, JSK 50, JSK 52 adalah fifth wheel 2 / 3½ inch paling populer untuk truk 4x2 dan 6x4. Coupling presisi tinggi, safety lock ganda, perawatan mudah, Cocok untuk Logistic dan tambang", "specs": ["King Pin Size: 2 / 3½ inch", "D-value: 170 - 400 kN", "Mounting height: 160, 190, 196, 250, 290mm", "Repair Kit parts: "]}, {"title": "JSK 38 G1 Fifth Wheel Coupling", "code": "JSK 38 G1", "badge": "FIFTH WHEEL • JSK 38", "short": "Varian G1 dengan jaw lock reinforced untuk heavy haul", "long": "JSK 38 G1 adalah versi reinforced dari C1, dengan jaw dan wearing ring lebih tebal untuk heavy haul dan medan off-road tambang.", "specs": ["Reinforced jaw", "Wearing ring: Heavy duty", "Untuk: Heavy haul 40 ton+", "Maintenance: Greaseable"]}, {"title": "JSK 50 Fifth Wheel Coupling", "code": "JSK 50", "badge": "FIFTH WHEEL • JSK 50", "short": "JSK 50 heavy duty untuk kombinasi 40-60 ton", "long": "JSK 50 adalah fifth wheel heavy duty untuk prime mover besar. D-value hingga 260kN, cocok untuk lowbed 8 axle dan logging truck.", "specs": ["D-value: 260 kN", "Kapasitas: Hingga 60 ton GCW", "Mounting: 4-point / pedestal", "Untuk: Lowbed, logging"]}, {"title": "JSK 52 Fifth Wheel Coupling", "code": "JSK 52", "badge": "FIFTH WHEEL • JSK 52 • BESTSELLER", "short": "JSK 52 premium, paling laku untuk fleet logistik Indonesia", "long": "Bestseller di Indonesia. JSK 52 premium dengan sensor coupling (SKE) dan LubeTronic otomatis. Paling aman untuk fleet logistik yang butuh uptime tinggi.", "specs": ["Bestseller Indonesia", "Fitur: SKE sensor + LubeTronic", "D-value: 260 kN", "Garansi: JOST original"]}, {"title": "KZ 1016 King Pin", "code": "KZ 1016", "badge": "KING PIN • KZ", "short": "King pin 2 inch standard DIN, material alloy steel forged", "long": "KZ 1016 King Pin 2 inch (50mm) standard untuk fifth wheel JSK. Forged alloy steel, hardness 380-420 HB, presisi tinggi untuk coupling aman.", "specs": ["Size: 2 inch (50mm)", "Standard: DIN 74083 / ISO 1726", "Material: 42CrMo4 forged", "Flange: 8 hole / 6 hole"]}, {"title": "Lock Jaw JSK52 SK8301-005", "code": "SK8301-005", "badge": "SPAREPART • LOCK JAW", "short": "Lock jaw original untuk JSK52, pengunci fifth wheel", "long": "Lock Jaw SK8301-005 adalah komponen pengunci utama di dalam fifth wheel JSK52. Harus diganti jika aus untuk menjaga safety coupling.", "specs": ["Untuk: JSK52", "Material: Forged, heat treated", "Ganti: Setiap 2 tahun / 200rb km", "Original: JOST Germany"]}, {"title": "Locking Bolt SK2405-01", "code": "SK2405-01", "badge": "BOLT • SK2405", "short": "Locking bolt set untuk maintenance fifth wheel", "long": "Locking Bolt SK2405-01 untuk mengunci jaw lock pada posisi terkunci. Bagian dari safety system secondary lock.", "specs": ["Part: SK2405-01", "Fungsi: Secondary lock", "Isi: Bolt + nut + washer"]}, {"title": "Pedestal Jost for JSK52 SK8301-224", "code": "SK8301-224", "badge": "PEDESTAL • JSK52", "short": "Pedestal / dudukan untuk JSK52, presisi tinggi", "long": "Pedestal SK8301-224 adalah dudukan mounting untuk fifth wheel JSK52 ke chassis. Tinggi presisi untuk coupling angle optimal.", "specs": ["Untuk: JSK52", "Height: 250mm", "Mounting: Bolt-on", "Material: S355"]}, {"title": "Pedestal Jost SK2821-51", "code": "SK2821-51", "badge": "PEDESTAL • SK2821", "short": "Pedestal SK2821-51 untuk JSK 38 series", "long": "Pedestal untuk JSK 38 C1 / G1. Lebih rendah untuk truk 4x2 low roof.", "specs": ["Untuk: JSK 38 series", "Height: 185mm", "Tipe: Low mounting"]}, {"title": "Repair Kit For Bearing SK2521-76", "code": "SK2521-76", "badge": "REPAIR KIT", "short": "Repair kit bearing fifth wheel, lengkap seal & ring", "long": "Repair Kit SK2521-76 berisi semua bearing, seal, dan snap ring untuk overhaul fifth wheel JSK. Satu kit untuk satu fifth wheel.", "specs": ["Isi: Bearing, seal, snap ring, grease", "Untuk: JSK 38 / 50 / 52", "Interval: Overhaul 3 tahun"]}, {"title": "Twist Lock QA 38 NS", "code": "QA 38 NS", "badge": "TWIST LOCK • CONTAINER", "short": "Twist lock container QA 38 NS, solusi penanganan kontainer", "long": "Twist Lock QA 38 NS untuk mengunci kontainer 20ft / 40ft ke trailer. Handling Solutions system JOST. Penguncian cepat dengan handle.", "specs": ["Tipe: QA 38 NS, non-sliding", "Untuk: Container trailer", "Lock: Manual twist", "Standard: ISO 1161"]}, {"title": "Wearing Ring Fifthwheel JSK 52 SK8301-223", "code": "SK8301-223", "badge": "WEARING RING • JSK52", "short": "Wearing ring / cincin aus untuk JSK52, ganti berkala", "long": "Wearing Ring SK8301-223 adalah cincin aus yang bersentuhan langsung dengan king pin. Harus diganti berkala untuk menjaga toleransi coupling.", "specs": ["Untuk: JSK52", "Material: Cast steel, hardened", "Tebal baru: 12mm", "Limit aus: 10.5mm"]}];
+
+const cursor=document.getElementById('cursor');const cursorDot=document.getElementById('cursorDot');let mouseX=0,mouseY=0,dotX=0,dotY=0,curX=0,curY=0;document.addEventListener('mousemove',e=>{mouseX=e.clientX;mouseY=e.clientY});(function animateCursor(){curX+=(mouseX-curX)*0.15;curY+=(mouseY-curY)*0.15;dotX+=(mouseX-dotX)*0.35;dotY+=(mouseY-dotY)*0.35;if(cursor){cursor.style.transform='translate('+(curX-20)+'px, '+(curY-20)+'px)'}if(cursorDot){cursorDot.style.left=dotX+'px';cursorDot.style.top=dotY+'px'}requestAnimationFrame(animateCursor)})();document.querySelectorAll('.magnetic').forEach(el=>{el.addEventListener('mousemove',e=>{const rect=el.getBoundingClientRect();const x=e.clientX-rect.left-rect.width/2;const y=e.clientY-rect.top-rect.height/2;el.style.transform='translate('+(x*0.25)+'px, '+(y*0.35)+'px)';if(cursor)cursor.classList.add('hover')});el.addEventListener('mouseleave',()=>{el.style.transform='translate(0,0)';if(cursor)cursor.classList.remove('hover')})});const loader=document.getElementById('loader');setTimeout(()=>{loader.classList.add('loader-hide')},1100);const navbar=document.getElementById('navbar');const navProgress=document.getElementById('navProgress');const navLinks=document.getElementById('navLinks');const navToggle=document.getElementById('navToggle');const ham=document.getElementById('ham');window.addEventListener('scroll',()=>{const s=window.scrollY;const h=document.documentElement.scrollHeight-window.innerHeight;const pct=h>0?s/h*100:0;if(navProgress)navProgress.style.width=pct+'%';if(s>80){navbar.classList.add('scrolled');navbar.style.height='70px'}else{navbar.classList.remove('scrolled');navbar.style.height='90px'}});navToggle.addEventListener('click',()=>{navLinks.classList.toggle('open');ham.classList.toggle('active')});const revealEls=document.querySelectorAll('.reveal, .produk-card');const io=new IntersectionObserver(entries=>{entries.forEach(entry=>{if(entry.isIntersecting){entry.target.classList.add('in-view')}})},{threshold:0.15});revealEls.forEach(el=>io.observe(el));
+
+// Product Modal Logic
+const modal=document.getElementById('prodModal');
+const modalImg=document.getElementById('modalImg');
+const modalBadge=document.getElementById('modalBadge');
+const modalBadge2=document.getElementById('modalBadge2');
+const modalTitle=document.getElementById('modalTitle');
+const modalCode=document.getElementById('modalCode');
+const modalShort=document.getElementById('modalShort');
+const modalLong=document.getElementById('modalLong');
+const modalSpecs=document.getElementById('modalSpecs');
+const modalClose=document.getElementById('modalClose');
+const modalClose2=document.getElementById('modalClose2');
+
+function openProductModal(index){
+  const p=productsData[index];
+  const card=document.querySelector(`.produk-card[data-index="${index}"]`);
+  const imgSrc=card.querySelector('img').src;
+  modalImg.src=imgSrc;
+  modalBadge.textContent=p.badge;
+  modalBadge2.textContent=p.badge;
+  modalTitle.textContent=p.title;
+  modalCode.textContent=p.code;
+  modalShort.textContent=p.short;
+  modalLong.textContent=p.long;
+  modalSpecs.innerHTML='';
+  p.specs.forEach(s=>{
+    const li=document.createElement('li');
+    li.textContent=s;
+    modalSpecs.appendChild(li);
+  });
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+function closeProductModal(){modal.classList.remove('open');document.body.style.overflow='';}
+document.querySelectorAll('.produk-card').forEach(card=>{
+  card.addEventListener('click',()=>{openProductModal(card.dataset.index)});
+});
+modalClose.addEventListener('click',closeProductModal);
+modalClose2.addEventListener('click',closeProductModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeProductModal()});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeProductModal()});
+</script>
 </body>
 </html>
